@@ -1,44 +1,47 @@
-<ion-content>
-  <!-- Título y subtítulo del login -->
-  <ion-title class="ion-padding-top ion-text-center">
-    <ion-label>
-      <h1>DuocUC</h1>
-      <p>Sistema de Asistencia Duoc UC</p>
-    </ion-label>
-  </ion-title>
-
-  <!-- Card de login -->
-  <div class="ion-padding-vertical">
-    <ion-card class="ion-text-center ion-padding-vertical">
-      <ion-card-title>
-        <ion-label>
-          <h2>¡Bienvenido!</h2>
-        </ion-label>
-      </ion-card-title>
-
-      <ion-card-content>
-        <!-- Input para el correo -->
-        <ion-item>
-          <ion-label position="floating">Correo</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.correo"></ion-input>
-        </ion-item>
-        <!-- Input para la contraseña -->
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
-        </ion-item>
-        <!-- Botón de ingreso -->
-        <ion-row>
-          <ion-col size="12">
-            <ion-button shape="block" (click)="ingresar()">INGRESAR</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-      
+<ion-content fullscreen>
+  <!-- Contenedor para la imagen de fondo -->
+  <div class="background-image">
+    <!-- Título y subtítulo del login -->
+    <ion-title class="ion-padding-top ion-text-center">
       <ion-label>
-        <br>
-        <a routerLink="">Recuperar contraseña</a>
+        <h1>DuocUC</h1>
+        <p>Sistema de Asistencia Duoc UC</p>
       </ion-label>
-    </ion-card>
+    </ion-title>
+
+    <!-- Card de login -->
+    <div class="ion-padding-vertical">
+      <ion-card class="ion-text-center ion-padding-vertical">
+        <ion-card-title>
+          <ion-label>
+            <h2>¡Bienvenido!</h2>
+          </ion-label>
+        </ion-card-title>
+
+        <ion-card-content>
+          <!-- Input para el correo -->
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input type="text" [(ngModel)]="usuario.correo"></ion-input>
+          </ion-item>
+          <!-- Input para la contraseña -->
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
+          </ion-item>
+          <!-- Botón de ingreso -->
+          <ion-row>
+            <ion-col size="12">
+              <ion-button shape="block" (click)="ingresar()">INGRESAR</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+
+        <ion-label>
+          <br>
+          <a routerLink="">Recuperar contraseña</a>
+        </ion-label>
+      </ion-card>
+    </div>
   </div>
 </ion-content>

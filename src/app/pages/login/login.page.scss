@@ -1,14 +1,20 @@
 /* Variables de colores basadas en la imagen */
 $duoc-azul: #003366;
 $duoc-amarillo: #fdb913;
-$background-image: url('/assets/images/duoc-background.jpg'); /* Cambia la ruta según la ubicación de la imagen */
+$texto-blanco: #ffffff;
 
 /* Estilos generales */
 ion-content {
-  background-image: $background-image;
-  background-size: cover;
-  background-position: center;
-  height: 100%;
+  .background-image {
+    background-image: url('/assets/images/1725086412.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ocupa toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 ion-title {
@@ -21,7 +27,7 @@ ion-title {
     }
 
     p {
-      color: $duoc-blanco;
+      color: white;
       font-size: 1.2rem;
     }
   }
@@ -31,7 +37,8 @@ ion-card {
   background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
   border-radius: 10px;
   padding: 1.5rem;
-  color: $duoc-blanco;
+  width: 90%; /* Ajustamos el ancho del card para móviles */
+  max-width: 400px; /* Límite máximo para pantallas más grandes */
 
   ion-card-title h2 {
     color: $duoc-amarillo;
@@ -43,17 +50,22 @@ ion-card {
   ion-item {
     background: transparent;
     --background: transparent;
+    --border-color: $texto-blanco; /* Bordes blancos */
+    --border-width: 2px; /* Ajustar grosor del borde */
+    --border-style: solid; /* Tipo de borde */
+    border-radius: 5px; /* Bordes redondeados para los cuadros */
+
     ion-label {
-      color: $duoc-blanco;
+      color: $texto-blanco; /* Color blanco para los textos de los inputs */
     }
+
     ion-input {
-      color: $duoc-blanco;
+      color: $texto-blanco; /* Asegurar que el texto dentro de los inputs también sea blanco */
     }
   }
 
   ion-button {
     background-color: $duoc-azul;
-    color: $duoc-blanco;
     font-size: 1.2rem;
     border-radius: 5px;
     margin-top: 1rem;
