@@ -1,0 +1,76 @@
+/* Variables de colores basadas en la imagen */
+$duoc-azul: #003366;
+$duoc-amarillo: #fdb913;
+$background-image: url('/assets/images/duoc-background.jpg'); /* Cambia la ruta según la ubicación de la imagen */
+
+/* Estilos generales */
+ion-content {
+  background-image: $background-image;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+ion-title {
+  ion-label {
+    h1 {
+      color: $duoc-amarillo;
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $duoc-blanco;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+ion-card {
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+  border-radius: 10px;
+  padding: 1.5rem;
+  color: $duoc-blanco;
+
+  ion-card-title h2 {
+    color: $duoc-amarillo;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  ion-item {
+    background: transparent;
+    --background: transparent;
+    ion-label {
+      color: $duoc-blanco;
+    }
+    ion-input {
+      color: $duoc-blanco;
+    }
+  }
+
+  ion-button {
+    background-color: $duoc-azul;
+    color: $duoc-blanco;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    
+    &:hover {
+      background-color: $duoc-amarillo;
+      color: $duoc-azul;
+    }
+  }
+
+  a {
+    color: $duoc-amarillo;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
