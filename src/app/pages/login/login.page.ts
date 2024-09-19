@@ -12,6 +12,9 @@ import { Usuario } from 'src/app/model/usuario';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+  public placeholderCorreo: string = '';  
+  public placeholderPassword: string = '';  
   /*
     Se genera el modelo user con dos claves (key), las que se comportan como propiedades
     de la clase LoginPage.
@@ -54,8 +57,8 @@ export class LoginPage implements OnInit {
           la página de login y me interesa probar las otras páginas, de este modo se saltará
           el login y no tendrás que estar digitando los datos todo el tiempo.
     */
-    this.usuario.correo = 'atorres@duocuc.cl';
-    this.usuario.password = '1234';
+    this.usuario.correo = '';
+    this.usuario.password = '';
     //this.ingresar();
   }
 
@@ -102,7 +105,7 @@ export class LoginPage implements OnInit {
       return true;
     }
     else {
-      this.mostrarMensaje('Las credenciales no son correctas!');
+      this.mostrarMensaje('¡Las credenciales no son correctas!');
       return false;
     }
   }
@@ -120,5 +123,7 @@ export class LoginPage implements OnInit {
       });
     toast.present();
   }
+
+
 
 }

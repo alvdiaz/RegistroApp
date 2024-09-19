@@ -15,6 +15,15 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
+  {
+    path: 'misdatos',
+    loadChildren: () => import('./pages/misdatos/misdatos.module').then( m => m.MisdatosPageModule)
+  },
+  {
+    path: 'miclase',
+    loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
+  },
+
 ];
 
 @NgModule({

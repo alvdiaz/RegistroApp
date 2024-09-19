@@ -1,6 +1,6 @@
 /* Variables de colores basadas en la imagen */
 $duoc-azul: #003366;
-$duoc-amarillo: #fdb913;
+$duoc-amarillo: #F1B634;
 $texto-blanco: #ffffff;
 
 /* Estilos generales */
@@ -17,28 +17,15 @@ ion-content {
   }
 }
 
-ion-title {
-  ion-label {
-    h1 {
-      color: $duoc-amarillo;
-      font-size: 3rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      color: white;
-      font-size: 1.2rem;
-    }
-  }
-}
 
 ion-card {
   background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 1.5rem;
   width: 90%; /* Ajustamos el ancho del card para móviles */
   max-width: 400px; /* Límite máximo para pantallas más grandes */
+
+  
 
   ion-card-title h2 {
     color: $duoc-amarillo;
@@ -65,7 +52,7 @@ ion-card {
   }
 
   ion-button {
-    background-color: $duoc-azul;
+    background-color: #FFFFFF;
     font-size: 1.2rem;
     border-radius: 5px;
     margin-top: 1rem;
@@ -85,4 +72,66 @@ ion-card {
       text-decoration: underline;
     }
   }
+}
+
+
+// Fondo para el título DUOC UC - ASISTENCIA  duoc
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction:column;
+  background-color:  rgba(0, 0, 0, 0.7); 
+  padding: 20px;
+  justify-content: space-between;
+
+  .logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 4rem;
+    font-weight: 700; 
+
+    .duoc-yellow {
+      color: #F1B634; 
+    }
+
+    .duoc-white {
+      color: #FFFFFF; 
+    }
+  }
+
+  .subtitulo {
+    color: #FFFFFF; 
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.2rem;
+    margin-top:5px;
+    text-align:center;
+
+    .duoc-text {
+      color: #F1B634; 
+      font-weight: bold;
+      font-size: 4rem;
+    }
+  }
+
+  
+  .logo-container {
+    display: flex;
+    align-items: center; 
+  }
+
+  .logo-uc {
+    width: 60px; 
+    height: auto;
+    margin-left: 3px; 
+  }
+
+
+
+
+
+
+
+
+
+
 }

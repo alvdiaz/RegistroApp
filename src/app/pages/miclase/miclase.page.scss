@@ -1,0 +1,113 @@
+/* Variables de colores institucionales DUOC UC */
+$duoc-azul: #003366;
+$duoc-amarillo: #fdb913;
+$duoc-blanco: #ffffff;
+
+/* Estilos generales */
+ion-header,
+ion-footer {
+  background-color: $duoc-azul;
+  color: $duoc-blanco;
+  ion-title {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: left;
+    color: $duoc-amarillo;
+  }
+}
+
+ion-content {
+  background-color: $duoc-blanco;
+  padding: 1rem;
+
+  ion-title {
+    h1 {
+      color: $duoc-azul;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $duoc-azul;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  h4 {
+    color: $duoc-azul;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  ion-item {
+    margin-bottom: 1rem;
+    background: transparent;
+    --color: $duoc-azul;
+
+    ion-label {
+      color: $duoc-azul;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    ion-input, ion-select {
+      --background: $duoc-blanco;
+      --placeholder-color: rgba($duoc-azul, 0.6);
+      --color: $duoc-azul;
+      border-bottom: 1px solid $duoc-azul;
+    }
+
+    ion-select-option {
+      color: $duoc-azul;
+    }
+  }
+
+  ion-grid {
+    ion-row {
+      margin-top: 1rem;
+
+      ion-col {
+        text-align: center;
+
+        ion-button {
+          width: 100%;
+          background-color: $duoc-azul;
+          color: $duoc-blanco;
+          font-weight: bold;
+          font-size: 1rem;
+          padding: 0.75rem;
+
+          &:hover {
+            background-color: $duoc-amarillo;
+            color: $duoc-azul;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Footer */
+ion-footer {
+  ion-title {
+    font-size: 1rem;
+    text-align: center;
+    color: $duoc-blanco;
+  }
+}
+ion-card {
+  --background: #000;
+  --color: #9efff0;
+}
+
+ion-card-title {
+  --color: #52ffe4;
+}
+
+ion-card-subtitle {
+  --color: #d1fff8;
+}

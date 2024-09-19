@@ -1,80 +1,65 @@
 <!-- Comienza el Header -->
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title class="ion-text-left ion-text">
-      SkeletonAPP
+  <ion-toolbar color="duoc-azul">
+    <ion-title class="ion-text-right ion-text">
+      Sistema de Asistencia 
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <!-- Termina el Header -->
 
 <!-- Comienza el Content -->
-<ion-content [fullscreen]="true" class="ion-padding-horizontal">
-  <ion-title class="ion-padding-top">
-    <ion-label>
-      <h1 class="ion-text-center">¡Bienvenido!</h1>
-      <!-- {{interpolacion}} 
-          Permite mostrar los datos desde el script a la visual
-          verificar el data en el home.page.ts
-        -->
-      <p *ngIf="usuario">Usuario: {{ usuario.nombre }}</p>
-    </ion-label>
-  </ion-title>
-  <b class="ion-text-center">
-    <h4>Información Adicional</h4>
-  </b>
+<ion-content class="ion-padding">
 
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input type="text" class="ion-text-right" [(ngModel)]="persona.nombre"></ion-input>
-  </ion-item>
+  <!-- Contenedor del saludo y el nombre -->
+  <div style="text-align: center;">
+    <h1>¡Bienvenido(a)!</h1>
+  </div>
 
-  <ion-item>
-    <ion-label position="floating">Apellido</ion-label>
-    <ion-input type="text" class="ion-text-right" [(ngModel)]="persona.apellido"></ion-input>
-  </ion-item>
+  <!-- Contenedor del código QR -->
+  <div style="text-align: center; margin: 20px 0;">
+    <p>Escanea el código QR para registrar tu asistencia a clases</p>
+    <div style="width: 200px; height: 200px; background-color: lightgray; margin: 0 auto;">
+      <!-- Aquí irá el código QR -->
+    </div>
+  </div>
 
-  <ion-item>
-    <ion-label>Educación</ion-label>
-    <ion-select placeholder="Seleccione nivel" 
-        [(ngModel)]="persona.nivelEducacional.id">
-      <ion-select-option *ngFor="let nivelEducacional of nivelesEducacionales" 
-        [value]="nivelEducacional.id">
-          {{nivelEducacional.nombre}}
-      </ion-select-option>
-    </ion-select>
-  </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Fecha Nacimiento</ion-label>
-    <ion-input type="date" class="ion-text-right"
-      [(ngModel)]="persona.fechaNacimiento">
-    </ion-input>
-  </ion-item>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-6>
-        <ion-button shape="block" (click)="limpiarFormulario()">
-          Limpiar
-        </ion-button>
-      </ion-col>
-      <ion-col col-6>
-        <ion-button shape="block" (click)="mostrarDatosPersona()">
-          Mostrar
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+
+  
+  <!-- Botón de Cerrar sesión -->
+  <div style="text-align: center; margin-top: 30px;">
+    <ion-button color="danger">
+      Cerrar sesión
+    </ion-button>
+  </div>
 </ion-content>
 <!-- Termina el Content -->
 
+
+
 <!-- Comienza el Footer -->
-<ion-footer>
-  <ion-toolbar color="primary">
-    <ion-title class="ion-text-left ion-text">
-      App desarrollada por ECZ
-    </ion-title>
-  </ion-toolbar>
-</ion-footer>
-<!-- Termina el Header -->
+
+<ion-tab-bar slot="bottom">
+  <ion-tab-button [routerLink]="['/misdatos']">
+    <ion-icon name="person-outline"></ion-icon>
+    <ion-label>Mis Datos</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button [routerLink]="['/inicio']">
+    <ion-icon name="home-outline"></ion-icon>
+    <ion-label>Inicio</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button [routerLink]="['/miclase']">
+    <ion-icon name="school-outline"></ion-icon>
+    <ion-label>Mi Clase</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>
+
+<!-- Termina el Footer -->
+
+
+
