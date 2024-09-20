@@ -1,30 +1,29 @@
-<ion-header>
-  <!-- Eliminamos el toolbar para que el logo esté dentro de la caja -->
-</ion-header>
-
 <ion-content>
-
   <div class="forgot-password-card">
-    <!-- Logo dentro de la caja -->
-    <img src="assets/images/duoc-logo2.png" alt="Logo UC" class="logo-uc">
+    <img src="assets/images/duoc-logo2.png" >
 
     <h2>Sistema de asistencia DUOC UC</h2>
     
     <h3>Recuperar contraseña</h3>
     <p>Paso 2: Responde la pregunta secreta</p>
-
+    
+    <!-- Aquí mostramos el nombre completo del usuario -->
+    <p>{{ usuarioActual?.nombre }}</p>
+    
     <ion-item>
       <ion-label position="stacked">
-        <ion-icon slot="start" name="mail-outline"></ion-icon>
-        ARRIBA INVOCAR AL USUARIO
-        TERMINAR E INVOCAR LA PREGUNTA SECRETA 
+        <ion-icon slot="start" name="help-circle-outline"></ion-icon>
+        <!-- Aquí mostramos la pregunta secreta del usuario -->
+        {{ usuarioActual?.preguntaSecreta }}
       </ion-label>
       <br>
-      <ion-input type="email" placeholder=""></ion-input>
+      <!-- Campo para ingresar la respuesta a la pregunta secreta -->
+      <ion-input [(ngModel)]="respuestaIngresada" placeholder="Ingresa la respuesta"></ion-input>
     </ion-item>
 
-    <ion-button expand="block">Recuperar contraseña</ion-button>
+    <!-- Botón que valida la respuesta -->
+    <ion-button expand="block" (click)="validarRespuesta()">Recuperar contraseña</ion-button>
 
-    <a href="#" class="login-link">Iniciar sesión</a>
+    <a href="#" class="login-link">Volver a Iniciar sesión</a>
   </div>
 </ion-content>

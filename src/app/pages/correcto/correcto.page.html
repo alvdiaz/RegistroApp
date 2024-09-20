@@ -1,13 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>correcto</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class="forgot-password-card">
+    <!-- Logo dentro de la caja -->
+    <img src="assets/images/duoc-logo2.png" alt="Logo UC" class="logo-uc">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">correcto</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <h2>Sistema de asistencia DUOC UC</h2>
+    
+    <div class="image-container">
+      <img src="assets/images/correcto.png" alt="Persona confundida" class="error-image">
+    </div>
+    
+    <h3>¡Su contraseña es !</h3>
+
+    <p>{{ usuarioActual?.password }}</p>
+
+    <a href="#" class="login-link">Volver a Iniciar sesión</a>
+  </div>
 </ion-content>

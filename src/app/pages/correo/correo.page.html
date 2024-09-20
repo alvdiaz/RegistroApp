@@ -1,9 +1,4 @@
-<ion-header>
-  <!-- Eliminamos el toolbar para que el logo esté dentro de la caja -->
-</ion-header>
-
 <ion-content>
-
   <div class="forgot-password-card">
     <!-- Logo dentro de la caja -->
     <img src="assets/images/duoc-logo2.png" alt="Logo UC" class="logo-uc">
@@ -19,10 +14,10 @@
         Correo
       </ion-label>
       <br>
-      <ion-input type="email" placeholder="ejm:c.aranda@duocuc.cl"></ion-input>
+      <ion-input [(ngModel)]="correoIngresado" type="email" placeholder="ejm:c.aranda@duocuc.cl"></ion-input>
     </ion-item>
 
-    <ion-button expand="block">Recuperar contraseña</ion-button>
+    <ion-button expand="block" (click)="validarCorreo()">Recuperar contraseña</ion-button>
 
     <a href="#" class="login-link">Iniciar sesión</a>
   </div>
