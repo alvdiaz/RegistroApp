@@ -11,7 +11,6 @@
             <span class="duoc-yellow">Duoc</span>
             <span class="duoc-white">UC</span>
           </div>
-          <!-- Logo de la Pontificia Universidad Católica -->
           <img src="assets/images/logo-uc.png" alt="Logo UC" class="logo-uc">
         </div>
 
@@ -31,11 +30,12 @@
             <h2>¡Bienvenido!</h2>
           </ion-label>
         </ion-card-title>
-
         <ion-card-content>
           <!-- Input para el correo -->
+
           <ion-item >
             <ion-label position="floating">Correo</ion-label>
+            <br>
             <ion-input 
               type="text" 
               [(ngModel)]="usuario.correo" 
@@ -46,6 +46,7 @@
           <!-- Input para la contraseña -->
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
+            <br>
             <ion-input 
               type="password" 
               [(ngModel)]="usuario.password" 
@@ -65,7 +66,7 @@
 
         <ion-label>
           <br>
-          <a routerLink="">Recuperar contraseña</a>
+          <a routerLink="/correo">Recuperar contraseña</a>
         </ion-label>
       </ion-card>
     </div>

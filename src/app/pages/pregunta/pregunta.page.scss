@@ -1,0 +1,80 @@
+$duoc-azul: #003366;
+$duoc-amarillo: #F1B634;
+$texto-blanco: #ffffff;
+$input-background: #ffffff; // Fondo blanco para el input
+
+ion-content {
+    --background: #003366; // Fondo general azul
+}
+
+.forgot-password-card {
+    margin: 10% auto;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    img.logo-uc {
+        width: 350px; // Ajustamos el tamaño del logo para que quede dentro de la caja
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+        font-size: 1rem;
+        color: $duoc-azul;
+    }
+
+    h3 {
+        margin-bottom: 5px;
+        font-size: 1.4rem;
+        color: $duoc-azul;
+    }
+
+    p {
+        margin-bottom: 15px;
+        font-size: 1rem;
+        color: $duoc-azul;
+    }
+
+    ion-item {
+        margin-bottom: 20px;
+        --background: transparent;
+        
+        ion-label {
+            color: $duoc-azul; // Color del label y del icono
+            font-size: 1rem;
+        }
+        
+        ion-input {
+            background-color: $input-background; // Fondo blanco
+            border: 1px solid $duoc-azul; // Borde azul
+            border-radius: 5px;
+            padding: 5px;
+            color: $duoc-azul; // Texto en azul
+        }
+    }
+
+    ion-button {
+        margin-top: 10px;
+        --background: #F1B634;
+        --border-radius: 8px;
+        width: 100%;
+        --color: white;
+    }
+
+    .login-link {
+        display: block;
+        margin-top: 15px;
+        color: $duoc-azul;
+        text-decoration: none;
+        font-size: 0.9rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
