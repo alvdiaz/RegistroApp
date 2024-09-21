@@ -2,32 +2,80 @@
 <ion-header>
   <ion-toolbar color="duoc-azul">
     <ion-title class="ion-text-center ion-text">
-      Sistema de Asistencia
+      Sistema de Asistencia Duoc
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-
+<div class="centered-item ion-text-center" >
+  <h1>Mi clase</h1>
+  <h2 *ngIf="usuario"> {{ usuario.nombre }}</h2>
+</div>
 
 <!-- Comienza el Content -->
 <ion-content class="ion-padding">
-  <!-- Información de la Clase -->
-  <ion-toolbar color="duoc-azul">
-    <ion-title>Información de la Clase</ion-title>
-  </ion-toolbar>
 
-  <div *ngIf="datosClase">
-    <h2>{{ datosClase.nombreAsignatura }}</h2>
-    <p><strong>Sede:</strong> {{ datosClase.sede }}</p>
-    <p><strong>ID Asignatura:</strong> {{ datosClase.idAsignatura }}</p>
-    <p><strong>Sección:</strong> {{ datosClase.seccion }}</p>
-    <p><strong>Profesor:</strong> {{ datosClase.nombreProfesor }}</p>
-    <p><strong>Día:</strong> {{ datosClase.dia }}</p>
-    <p><strong>Bloque Inicio:</strong> {{ datosClase.bloqueInicio }}</p>
-    <p><strong>Bloque Término:</strong> {{ datosClase.bloqueTermino }}</p>
-    <p><strong>Hora de Inicio:</strong> {{ datosClase.horaInicio }}</p>
-    <p><strong>Hora de Fin:</strong> {{ datosClase.horaFin }}</p>
-  </div>
+  <!-- Tabla minimalista con colores institucionales de Duoc -->
+<ion-card>
+  <ion-card-header color="duoc-azul">
+    <ion-card-title class="ion-text-center">Información de la Clase</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="header-row">
+        <ion-col><strong>Bloque de Inicio</strong></ion-col>
+        <ion-col>{{ bloqueInicio }}</ion-col>
+      </ion-row>
+
+      <ion-row class="data-row">
+        <ion-col><strong>Bloque de Término</strong></ion-col>
+        <ion-col>{{ bloqueTermino }}</ion-col>
+      </ion-row>
+
+      <ion-row class="header-row">
+        <ion-col><strong>Día</strong></ion-col>
+        <ion-col>{{ dia }}</ion-col>
+      </ion-row>
+
+      <ion-row class="data-row">
+        <ion-col><strong>Hora de Inicio</strong></ion-col>
+        <ion-col>{{ horaInicio }}</ion-col>
+      </ion-row>
+
+      <ion-row class="header-row">
+        <ion-col><strong>Hora de Fin</strong></ion-col>
+        <ion-col>{{ horaFin }}</ion-col>
+      </ion-row>
+
+      <ion-row class="data-row">
+        <ion-col><strong>Sigla</strong></ion-col>
+        <ion-col>{{ idAsignatura }}</ion-col>
+      </ion-row>
+
+      <ion-row class="header-row">
+        <ion-col><strong>Nombre de Asignatura</strong></ion-col>
+        <ion-col>{{ nombreAsignatura }}</ion-col>
+      </ion-row>
+
+      <ion-row class="data-row">
+        <ion-col><strong>Nombre del Profesor</strong></ion-col>
+        <ion-col>{{ nombreProfesor }}</ion-col>
+      </ion-row>
+
+      <ion-row class="header-row">
+        <ion-col><strong>Sección</strong></ion-col>
+        <ion-col>{{ seccion }}</ion-col>
+      </ion-row>
+
+      <ion-row class="data-row">
+        <ion-col><strong>Sede</strong></ion-col>
+        <ion-col>{{ sede }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
 </ion-content>
 <!-- Termina el Content -->
 

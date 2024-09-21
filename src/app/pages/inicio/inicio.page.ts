@@ -1,18 +1,22 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, IonicSafeString } from '@ionic/angular';
+import { AlertController, AnimationController, IonicSafeString } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Persona } from 'src/app/model/persona';
 import { Asistencia } from 'src/app/model/asistencia';
 import jsQR, { QRCode } from 'jsqr';
 
+
 @Component({
   selector: 'app-inicio',
   templateUrl: 'inicio.page.html',
   styleUrls: ['inicio.page.scss'],
 })
-export class InicioPage implements OnInit {
+export class InicioPage implements OnInit, AfterViewInit {
+  @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
+
+
   miclase() {
     throw new Error('Method not implemented.');
   }
@@ -36,27 +40,58 @@ export class InicioPage implements OnInit {
   public escaneando = false;
   public datosQR: string = '';
 
+
+  public bloqueInicio: number = 0;
+  public bloqueTermino: number = 0;
+  public dia: string = '';
+  public horaFin: string = '';
+  public horaInicio: string = '';
+  public idAsignatura: string = '';
+  public nombreAsignatura: string = '';
+  public nombreProfesor: string = '';
+  public seccion: string = '';
+  public sede: string = '';
+
   constructor(
     private activeroute: ActivatedRoute,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private animationController: AnimationController
   ) {}
 
   public ngOnInit() {
-    // Aquí obtenemos los datos del usuario que fue enviado desde la página de login
+    // Obtener los datos del usuario desde la página de login
     const navExtras = this.router.getCurrentNavigation()?.extras?.state;
+    
     if (navExtras && navExtras['usuario']) {
-      this.usuario = navExtras['usuario'];
-    }
+      this.usuario = navExtras['usuario']; // Asignar usuario desde el estado de navegación
+    } 
+  }
+
+  public ngAfterViewInit() {
+    this.animarTituloIzqDer();
+
+  }
+
+  animarTituloIzqDer() {
+    this.animationController
+      .create()
+      .addElement(this.itemTitulo.nativeElement)
+      .iterations(Infinity)
+      .duration(6000)
+      .fromTo('transform', 'translate(0%)', 'translate(100%)')
+      .fromTo('opacity', 0.7, 1)
+      .play();
   }
 
   // Función para navegar a la página de Mis Datos
   public irAMisDatos() {
-    this.router.navigate(['/mis-datos'], {
+    this.router.navigate(['/misdatos'], {
       state: {
         usuario: this.usuario, // Pasar usuario a la siguiente página
       },
     });
+    
   }
 
   public async comenzarEscaneoQR() {
@@ -99,13 +134,34 @@ export class InicioPage implements OnInit {
   }
 
   public mostrarDatosQROrdenados(datosQR: string): void {
-    // Parseamos los datos del QR
     const objetoDatosQR = JSON.parse(datosQR);
-    // Asignamos los datos del QR a la propiedad 'datosQR'
-    this.datosQR = datosQR;
-    // Navegamos a la página 'miclase' pasando los datos como parámetros
+    this.bloqueInicio = objetoDatosQR.bloqueInicio;
+    this.bloqueTermino = objetoDatosQR.bloqueTermino;
+    this.dia = objetoDatosQR.dia;
+      
+    this.horaFin = objetoDatosQR.horaFin;
+    this.horaInicio = objetoDatosQR.horaInicio;
+    this.idAsignatura = objetoDatosQR.idAsignatura;
+    this.nombreAsignatura = objetoDatosQR.nombreAsignatura;
+    this.nombreProfesor = objetoDatosQR.nombreProfesor;
+    this.seccion = objetoDatosQR.seccion;
+    this.sede = objetoDatosQR.sede;
+
     this.router.navigate(['/miclase'], {
-      state: { datosClase: objetoDatosQR },
+      state: {
+        datosQR: {
+          bloqueInicio: this.bloqueInicio,
+          bloqueTermino: this.bloqueTermino,
+          dia: this.dia,
+          horaFin: this.horaFin,
+          horaInicio: this.horaInicio,
+          idAsignatura: this.idAsignatura,
+          nombreAsignatura: this.nombreAsignatura,
+          nombreProfesor: this.nombreProfesor,
+          seccion: this.seccion,
+          sede: this.sede,
+        },
+      },
     });
   }
 

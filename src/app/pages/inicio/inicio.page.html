@@ -1,8 +1,8 @@
 <!-- Comienza el Header -->
 <ion-header>
   <ion-toolbar color="duoc-azul">
-    <ion-title class="ion-text-center ion-text">
-      Sistema de Asistencia
+    <ion-title #titulo class="ion-text">
+      Sistema de Asistencia Duoc
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,34 +14,43 @@
   <!-- Contenedor del saludo y el nombre -->
   <div class="centered-item">
     <h1>¡Bienvenido(a)!</h1>
-    <h2>{{ usuario.nombre }}</h2>
+    <h2 *ngIf="usuario"> {{ usuario.nombre }}</h2>
   </div>
 
  
 
   <!-- Contenedor del código QR -->
-  <div class="centered-item" style="margin: 20px 0;">
-    <p>Escanea el código QR para registrar tu asistencia a clases</p>
+  <ion-card class="ion-text-center" style="max-width: 350px; margin: 0 auto;">
+    <ion-card-header>
+      <ion-card-title>Asistencia a Clases</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>Escanea el código QR para registrar tu asistencia a clases</p>
+  
+      <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="block" shape="round" color="primary">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+        Comenzar Escaneo de QR
+      </ion-button>
+  
+      <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="block" shape="round" color="danger">
+        <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+        Detener escaneo de QR
+      </ion-button>
+  
+      <!-- Contenedor de video y canvas -->
+      <div style="position: relative; margin-top: 15px;">
+        <video #video [hidden]="!escaneando" style="width: 100%; border-radius: 10px;"></video>
+        <canvas #canvas hidden></canvas>
+      </div>
 
-    <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" shape="round">
-      <ion-icon slot="start" name="videocam-outline"></ion-icon>
-      Comenzar Escaneo de QR
-    </ion-button>
+      <!-- Botón de Cerrar sesión -->
+      <ion-button color="danger" size="small" (click)="cerrarSesion()" class="centered-item">
+        Cerrar sesión
+      </ion-button>
 
-    <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="full" shape="round">
-      <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
-      Detener escaneo de QR
-    </ion-button>
-
-    <video #video [hidden]="!escaneando" width="100%"></video>
-    <canvas #canvas hidden></canvas>
-  </div>
-
-  <!-- Botón de Cerrar sesión -->
-  <ion-button color="danger" (click)="cerrarSesion()" class="centered-item">
-    Cerrar sesión
-  </ion-button>
-
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 <!-- Termina el Content -->
 

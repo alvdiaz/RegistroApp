@@ -29,27 +29,35 @@ export class LoginPage implements OnInit {
 
 
  
-    this.usuario.correo = '';
-    this.usuario.password = '';
+    this.usuario.correo = 'atorres@duocuc.cl';
+    this.usuario.password = '1234';
     
   }
 
  
   public ingresar(): void {
+    // Primero, validar el usuario.
     if (!this.validarUsuario(this.usuario)) {
-      return;
+      return; // Si no es válido, salir de la función
     }
   
-    this.mostrarMensaje('¡Bienvenido!');
+    // Mostrar mensaje de bienvenida con el nombre del usuario
+    this.mostrarMensaje(`¡Bienvenido, ${this.usuario.nombre}!`);
   
+    // Crear NavigationExtras para pasar el usuario a la página de inicio
     const navigationExtras: NavigationExtras = {
       state: {
-        usuario: this.usuario // Enviamos el usuario logueado
+        usuario: this.usuario // Enviar el objeto de usuario completo
       }
     };
+
+    
+  
+    // Navegar a la página de inicio y pasar los datos del usuario
     this.router.navigate(['/inicio'], navigationExtras);
   }
 
+  
   /*
     Usaremos validateModel para verificar que se cumplan las
     validaciones de los campos del formulario
@@ -83,6 +91,7 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
+  
 
 
 }
