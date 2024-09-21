@@ -1,43 +1,46 @@
-/* Variables de colores institucionales DUOC UC */
-$duoc-azul: #003366;
-$duoc-amarillo: #fdb913;
-$duoc-blanco: #ffffff;
-
 /* Estilos generales */
 ion-header,
 ion-footer {
-  background-color: $duoc-azul;
-  color: $duoc-blanco;
+  background-color: #003366; /* Azul Duoc */
+  color: #ffffff; /* Blanco Duoc */
+
   ion-title {
     font-weight: bold;
     font-size: 1.4rem;
     text-align: left;
-    color: $duoc-amarillo;
+    color: #fdb913; /* Amarillo Duoc */
   }
 }
 
 ion-content {
-  background-color: $duoc-blanco;
+  background-color: #ffffff !important; /* Fondo blanco */
+  color: #000000 !important; /* Letras negras */
   padding: 1rem;
 
-  ion-title {
-    h1 {
-      color: $duoc-azul;
-      font-size: 2rem;
-      font-weight: bold;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-    }
+  /* Clase que centra el contenido vertical y horizontalmente */
+  .centered-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+  }
 
-    p {
-      color: $duoc-azul;
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
+  /* Clase para centrar elementos individuales */
+  .centered-item {
+    text-align: center;
+    width: 100%;
+  }
+
+  ion-title {
+    h1, h2, p {
+      color: #000000 !important; /* Letras negras para estos elementos */
     }
   }
 
   h4 {
-    color: $duoc-azul;
+    color: #000000 !important; /* Color negro para h4 */
     font-weight: bold;
     margin-bottom: 1rem;
     font-size: 1.3rem;
@@ -46,23 +49,24 @@ ion-content {
   ion-item {
     margin-bottom: 1rem;
     background: transparent;
-    --color: $duoc-azul;
+    --color: #000000 !important; /* Color negro para los ion-item */
 
     ion-label {
-      color: $duoc-azul;
+      color: #000000 !important; /* Color negro para ion-label */
       font-size: 1.1rem;
       font-weight: bold;
     }
 
-    ion-input, ion-select {
-      --background: $duoc-blanco;
-      --placeholder-color: rgba($duoc-azul, 0.6);
-      --color: $duoc-azul;
-      border-bottom: 1px solid $duoc-azul;
+    ion-input,
+    ion-select {
+      --background: #ffffff; /* Fondo blanco */
+      --placeholder-color: rgba(0, 0, 0, 0.6); /* Placeholder en tono gris */
+      --color: #000000 !important; /* Color negro para inputs y selects */
+      border-bottom: 1px solid #000000; /* Borde negro */
     }
 
     ion-select-option {
-      color: $duoc-azul;
+      color: #000000 !important; /* Color negro para opciones de select */
     }
   }
 
@@ -75,15 +79,15 @@ ion-content {
 
         ion-button {
           width: 100%;
-          background-color: $duoc-azul;
-          color: $duoc-blanco;
+          background-color: #003366; /* Azul Duoc */
+          color: #ffffff; /* Blanco Duoc */
           font-weight: bold;
           font-size: 1rem;
           padding: 0.75rem;
 
           &:hover {
-            background-color: $duoc-amarillo;
-            color: $duoc-azul;
+            background-color: #fdb913; /* Amarillo Duoc */
+            color: #003366; /* Azul Duoc */
           }
         }
       }
@@ -96,6 +100,6 @@ ion-footer {
   ion-title {
     font-size: 1rem;
     text-align: center;
-    color: $duoc-blanco;
+    color: #ffffff; /* Blanco */
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-miclase',
@@ -17,9 +17,15 @@ misdatos() {
 throw new Error('Method not implemented.');
 }
 
-  constructor() { }
+public datosClase: any;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    // Obtenemos los datos enviados desde 'inicio.page.ts'
+    const navExtras = this.router.getCurrentNavigation()?.extras?.state;
+    if (navExtras && navExtras['datosClase']) {
+      this.datosClase = navExtras['datosClase'];
+    }
   }
-
 }

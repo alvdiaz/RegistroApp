@@ -1,25 +1,33 @@
 <!-- Comienza el Header -->
 <ion-header>
   <ion-toolbar color="duoc-azul">
-    <!-- Botón alineado a la izquierda -->
-    <ion-buttons slot="start" [routerLink]="['/inicio']">
-      <ion-back-button default-href="#"></ion-back-button>
-    </ion-buttons>
-
-    <!-- Título alineado a la derecha -->
-    <ion-title class="ion-text-end" slot="end">
+    <ion-title class="ion-text-center ion-text">
       Sistema de Asistencia
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<!-- Termina el Header -->
-
 
 <!-- Comienza el Content -->
+<ion-content class="ion-padding">
+  <!-- Información de la Clase -->
+  <ion-toolbar color="duoc-azul">
+    <ion-title>Información de la Clase</ion-title>
+  </ion-toolbar>
 
+  <div *ngIf="datosClase">
+    <h2>{{ datosClase.nombreAsignatura }}</h2>
+    <p><strong>Sede:</strong> {{ datosClase.sede }}</p>
+    <p><strong>ID Asignatura:</strong> {{ datosClase.idAsignatura }}</p>
+    <p><strong>Sección:</strong> {{ datosClase.seccion }}</p>
+    <p><strong>Profesor:</strong> {{ datosClase.nombreProfesor }}</p>
+    <p><strong>Día:</strong> {{ datosClase.dia }}</p>
+    <p><strong>Bloque Inicio:</strong> {{ datosClase.bloqueInicio }}</p>
+    <p><strong>Bloque Término:</strong> {{ datosClase.bloqueTermino }}</p>
+    <p><strong>Hora de Inicio:</strong> {{ datosClase.horaInicio }}</p>
+    <p><strong>Hora de Fin:</strong> {{ datosClase.horaFin }}</p>
+  </div>
+</ion-content>
 <!-- Termina el Content -->
-
-
 
 <!-- Comienza el Footer -->
 <ion-tab-bar slot="bottom">
@@ -39,4 +47,3 @@
   </ion-tab-button>
 </ion-tab-bar>
 <!-- Termina el Footer -->
-

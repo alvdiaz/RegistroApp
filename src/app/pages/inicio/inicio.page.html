@@ -1,47 +1,51 @@
 <!-- Comienza el Header -->
 <ion-header>
   <ion-toolbar color="duoc-azul">
-    <ion-title class="ion-text-right ion-text">
-      Sistema de Asistencia 
+    <ion-title class="ion-text-center ion-text">
+      Sistema de Asistencia
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <!-- Termina el Header -->
 
 <!-- Comienza el Content -->
-<ion-content class="ion-padding">
+<ion-content class="ion-padding centered-content">
 
   <!-- Contenedor del saludo y el nombre -->
-  <div style="text-align: center;">
+  <div class="centered-item">
     <h1>¡Bienvenido(a)!</h1>
+    <h2>{{ usuario.nombre }}</h2>
   </div>
+
+ 
 
   <!-- Contenedor del código QR -->
-  <div style="text-align: center; margin: 20px 0;">
+  <div class="centered-item" style="margin: 20px 0;">
     <p>Escanea el código QR para registrar tu asistencia a clases</p>
-    <div style="width: 200px; height: 200px; background-color: lightgray; margin: 0 auto;">
-      <!-- Aquí irá el código QR -->
-    </div>
-  </div>
 
-
-
-
-
-  
-  <!-- Botón de Cerrar sesión -->
-  <div style="text-align: center; margin-top: 30px;">
-    <ion-button color="danger">
-      Cerrar sesión
+    <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" shape="round">
+      <ion-icon slot="start" name="videocam-outline"></ion-icon>
+      Comenzar Escaneo de QR
     </ion-button>
+
+    <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="full" shape="round">
+      <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+      Detener escaneo de QR
+    </ion-button>
+
+    <video #video [hidden]="!escaneando" width="100%"></video>
+    <canvas #canvas hidden></canvas>
   </div>
+
+  <!-- Botón de Cerrar sesión -->
+  <ion-button color="danger" (click)="cerrarSesion()" class="centered-item">
+    Cerrar sesión
+  </ion-button>
+
 </ion-content>
 <!-- Termina el Content -->
 
-
-
 <!-- Comienza el Footer -->
-
 <ion-tab-bar slot="bottom">
   <ion-tab-button [routerLink]="['/misdatos']">
     <ion-icon name="person-outline"></ion-icon>
@@ -58,8 +62,4 @@
     <ion-label>Mi Clase</ion-label>
   </ion-tab-button>
 </ion-tab-bar>
-
 <!-- Termina el Footer -->
-
-
-
