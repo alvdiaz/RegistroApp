@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnimationController } from '@ionic/angular';
 import { Persona } from 'src/app/model/persona';
 import { Usuario } from 'src/app/model/usuario';
 
@@ -9,15 +10,18 @@ import { Usuario } from 'src/app/model/usuario';
   templateUrl: './miclase.page.html',
   styleUrls: ['./miclase.page.scss'],
 })
-export class MiclasePage implements OnInit {
+export class MiclasePage implements OnInit, AfterViewInit {
+
+  @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
+
   public persona: Persona = new Persona();
   public usuario: Usuario = new Usuario('', '', '', '', '');
 
 
 
   
-  public bloqueInicio: number = 0;
-  public bloqueTermino: number = 0;
+  public bloqueInicio: number=0 ;
+  public bloqueTermino: number=0 ;
   public dia: string = '';
   public horaFin: string = '';
   public horaInicio: string = '';
@@ -39,7 +43,11 @@ throw new Error('Method not implemented.');
 
 public datosClase: any;
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router,
+  private animationController: AnimationController
+
+  ) { }
 
   ngOnInit() {
     // Verificamos si hay datos de QR en el estado de navegación
@@ -58,5 +66,21 @@ public datosClase: any;
       this.seccion = datosQR.seccion;
       this.sede = datosQR.sede;
     }
+  }
+
+  public ngAfterViewInit() {
+    this.animarTituloIzqDer();
+
+  }
+
+  animarTituloIzqDer() {
+    this.animationController
+      .create()
+      .addElement(this.itemTitulo.nativeElement)
+      .iterations(Infinity)
+      .duration(6000)
+      .fromTo('transform', 'translate(0%)', 'translate(100%)')
+      .fromTo('opacity', 0.7, 1)
+      .play();
   }
 }

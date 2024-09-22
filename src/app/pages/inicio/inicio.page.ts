@@ -14,7 +14,9 @@ import jsQR, { QRCode } from 'jsqr';
   styleUrls: ['inicio.page.scss'],
 })
 export class InicioPage implements OnInit, AfterViewInit {
-  @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
+
+
+
 
 
   miclase() {
@@ -32,6 +34,12 @@ export class InicioPage implements OnInit, AfterViewInit {
 
   @ViewChild('canvas')
   private canvas!: ElementRef;
+
+  @ViewChild('titulo', { read: ElementRef })
+   itemTitulo!: ElementRef;
+  
+   @ViewChild('page', { read: ElementRef })
+   page!: ElementRef;
 
   public usuario: Usuario = new Usuario('', '', '', '', '');
   public nivelesEducacionales: NivelEducacional[] = new NivelEducacional().getNivelesEducacionales();
@@ -81,6 +89,16 @@ export class InicioPage implements OnInit, AfterViewInit {
       .duration(6000)
       .fromTo('transform', 'translate(0%)', 'translate(100%)')
       .fromTo('opacity', 0.7, 1)
+      .play();
+  }
+
+  animarRotacion() {
+    this.animationController
+      .create()
+      .addElement(this.page.nativeElement)
+      .iterations(1)
+      .duration(1000)
+      .fromTo('transform', 'rotate(0deg)', 'rotate(360deg)')
       .play();
   }
 

@@ -13,6 +13,8 @@ import { Persona } from 'src/app/model/persona';
 export class MisdatosPage implements OnInit, AfterViewInit {
 
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
+  @ViewChild('page', { read: ElementRef }) page!: ElementRef;
+
 
 
   public usuario: Usuario = new Usuario('','','','','');
@@ -30,14 +32,24 @@ export class MisdatosPage implements OnInit, AfterViewInit {
     // Verificar si recibimos los datos desde el login
     if (this.router.getCurrentNavigation()?.extras.state) {
       const state = this.router.getCurrentNavigation()?.extras.state as { usuario: Usuario };
+  
       this.usuario = state.usuario; // Aquí recuperamos el usuario y lo asignamos
-      this.persona.nombre = this.usuario.nombre; // Si la persona también tiene nombre
-      this.usuario.correo = this.usuario.correo; // Llenamos datos relevantes en persona
+  
+      // Si los datos de persona están disponibles en el estado, los asignamos directamente
+      if (state.usuario) {
+        this.persona.nombre = this.usuario.nombre; // Usamos el nombre de usuario para inicializar persona.nombre
+        this.persona.apellido = ''; // Puedes inicializar otros valores de persona aquí si es necesario
+      }
     }
   }
+  
+  
+  
+  
 
   public ngAfterViewInit() {
     this.animarTituloIzqDer();
+    this.animarVueltaDePagina();
 
   }
 
@@ -52,11 +64,26 @@ export class MisdatosPage implements OnInit, AfterViewInit {
       .play();
   }
 
+  animarVueltaDePagina() {
+    this.animationController
+      .create()
+      .addElement(this.page.nativeElement)
+      .iterations(1)
+      .duration(1000)
+      .fromTo('transform', 'rotateY(deg)', 'rotateY(-180)')
+      .duration(1000)
+      .fromTo('transform', 'rotateY(-180deg)', 'rotateY(0deg)')
+      .play();
+  }
+
+
+  
+
   // Función 1: Actualizar datos del usuario en la lista de usuarios válidos
   public actualizarUsuarioEnLista(): void {
     const listaUsuariosValidos = this.usuario.listaUsuariosValidos();
     const index = listaUsuariosValidos.findIndex(usu => usu.correo === this.usuario.correo);
-
+  
     if (index !== -1) {
       // Actualizamos los datos en la lista de usuarios válidos
       listaUsuariosValidos[index] = this.usuario;
@@ -65,6 +92,7 @@ export class MisdatosPage implements OnInit, AfterViewInit {
       this.presentAlert('Error', 'No se encontró el usuario en la lista de usuarios válidos.');
     }
   }
+  
 
   // Función 2: Guardar en State y pasar usuario a ingreso.html al cerrar sesión
   public cerrarSesion(): void {
@@ -83,27 +111,48 @@ export class MisdatosPage implements OnInit, AfterViewInit {
     }
   }
 
-  public mostrarDatosPersona(): void {
-    if (this.persona.nombre.trim() === '' && this.persona.apellido === '') {
-      this.presentAlert('Datos Actualizados', 'Para mostrar los datos de la persona, '
-        + 'al menos debe tener un valor para el nombre o el apellido.');
+  asignado(texto: string) {
+    if (texto.trim() !== '') {
+      return texto;
+    }
+    return 'No asignado';
+  }
+
+
+  mostrarDatosPersona() {
+    // Si el usuario no ingresa la cuenta, se mostrará un error
+    if (this.usuario.correo.trim() === '') {
+      this.mostrarMensajeAlerta('El correo es un campo obligatorio.');
       return;
     }
 
-    // Mensaje con datos de la persona
-    let mensaje = '<br><b>Usuario:</b> ' + this.usuario.correo;
-    mensaje += '<br><b>Nombre:</b> ' + this.persona.nombre;
-    mensaje += '<br><b>Apellido:</b> ' + this.persona.apellido;
-    mensaje += '<br><b>Educación:</b> ' + this.persona.getTextoNivelEducacional();
-    mensaje += '<br><b>Nacimiento:</b> ' + this.persona.getTextoFechaNacimiento();
+    // Si el usuario no ingresa al menos el nombre o el apellido, se mostrará un error
+ 
 
-    this.presentAlert('Datos Actualizados', mensaje);
+    // Mostrar un mensaje emergente con los datos de la persona
+    let mensaje = `
+
+  Correo:   ${this.usuario.correo} 
+  Nombre:   ${this.asignado(this.usuario.nombre)}
+  Contraseña:   ${this.usuario.password}
+
+ 
+    `;
+    this.mostrarMensajeAlerta(mensaje);
   }
-
   public async presentAlert(titulo: string, mensaje: string) {
     const alert = await this.alertController.create({
       header: titulo,
       message: new IonicSafeString(mensaje),
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  async mostrarMensajeAlerta(mensaje: string) {
+    const alert = await this.alertController.create({
+      header: 'Datos personales',
+      message: mensaje,
       buttons: ['OK']
     });
     await alert.present();

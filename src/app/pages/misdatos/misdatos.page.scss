@@ -99,3 +99,14 @@ ion-footer {
     color: $duoc-blanco;
   }
 }
+
+ion-input, ion-select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+ion-button {
+  margin-top: 20px;
+  width: 80%;
+}
