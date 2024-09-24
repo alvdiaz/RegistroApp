@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController, AnimationController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';  
 
 
@@ -10,14 +11,22 @@ import { Usuario } from 'src/app/model/usuario';
   templateUrl: './correo.page.html',
   styleUrls: ['./correo.page.scss'],
 })
-export class CorreoPage implements OnInit {
+export class CorreoPage implements OnInit, AfterViewInit {
+
+  @ViewChild('page', { read: ElementRef }) page!: ElementRef;
+
 
   // Variable que almacenará el correo ingresado
   correoIngresado: string = '';
   // Usuario actual que se utilizará en la siguiente página
   usuarioActual: Usuario | null = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private alertController: AlertController,
+    private animationController: AnimationController
+  ) {
+    
+   }
 
   ngOnInit() {}
 
@@ -38,5 +47,18 @@ export class CorreoPage implements OnInit {
       // Si el correo no es válido, redirigir a la página de error
       this.router.navigate(['/incorrecto']);
     }
+  }
+
+  public ngAfterViewInit() {
+    this.animarDeslizarVertical()
+  }
+
+  animarDeslizarVertical() {
+    this.animationController
+      .create()
+      .addElement(this.page.nativeElement)
+      .duration(800)
+      .fromTo('transform', 'translateY(-100%)', 'translateY(0%)')
+      .play();
   }
 }

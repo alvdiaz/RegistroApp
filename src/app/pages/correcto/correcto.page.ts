@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController, AnimationController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 
 @Component({
@@ -7,11 +8,17 @@ import { Usuario } from 'src/app/model/usuario';
   templateUrl: './correcto.page.html',
   styleUrls: ['./correcto.page.scss'],
 })
-export class CorrectoPage implements OnInit {
+export class CorrectoPage implements OnInit, AfterViewInit {
+
+  @ViewChild('page', { read: ElementRef }) page!: ElementRef;
+
 
   usuarioActual: Usuario | null = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private alertController: AlertController,
+    private animationController: AnimationController
+  ) { }
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
@@ -22,4 +29,19 @@ export class CorrectoPage implements OnInit {
       console.error('No se recibió el estado del usuario');
     }
   }
+
+  ngAfterViewInit() {
+    this.animarExpansion();
+    
+  }
+
+  animarExpansion() {
+    this.animationController
+      .create()
+      .addElement(this.page.nativeElement)
+      .duration(1200)
+      .fromTo('transform', 'scaleX(0)', 'scaleX(1)')
+      .play();
+  }
+
 }

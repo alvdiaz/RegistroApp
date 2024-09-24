@@ -78,7 +78,7 @@ export class InicioPage implements OnInit, AfterViewInit {
 
   public ngAfterViewInit() {
     this.animarTituloIzqDer();
-
+    this.animarAparicionFondo();
   }
 
   animarTituloIzqDer() {
@@ -92,13 +92,13 @@ export class InicioPage implements OnInit, AfterViewInit {
       .play();
   }
 
-  animarRotacion() {
+  animarAparicionFondo() {
     this.animationController
       .create()
       .addElement(this.page.nativeElement)
       .iterations(1)
-      .duration(1000)
-      .fromTo('transform', 'rotate(0deg)', 'rotate(360deg)')
+      .duration(1200)
+      .fromTo('transform', 'scale(0.5)', 'scale(1)')
       .play();
   }
 

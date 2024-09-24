@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content #page>
   <div class="forgot-password-card">
     <img src="assets/images/duoc-logo2.png" >
 
@@ -10,7 +10,7 @@
     <!-- Aquí mostramos el nombre completo del usuario -->
     <p>{{ usuarioActual?.nombre }}</p>
     
-    <ion-item>
+    <ion-item #index>
       <ion-label position="stacked">
         <ion-icon slot="start" name="help-circle-outline"></ion-icon>
         <!-- Aquí mostramos la pregunta secreta del usuario -->

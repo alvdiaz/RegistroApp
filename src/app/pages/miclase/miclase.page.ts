@@ -13,6 +13,8 @@ import { Usuario } from 'src/app/model/usuario';
 export class MiclasePage implements OnInit, AfterViewInit {
 
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
+  @ViewChild('page', { read: ElementRef })
+  page!: ElementRef;
 
   public persona: Persona = new Persona();
   public usuario: Usuario = new Usuario('', '', '', '', '');
@@ -70,7 +72,7 @@ public datosClase: any;
 
   public ngAfterViewInit() {
     this.animarTituloIzqDer();
-
+    this. animarRebote();
   }
 
   animarTituloIzqDer() {
@@ -81,6 +83,20 @@ public datosClase: any;
       .duration(6000)
       .fromTo('transform', 'translate(0%)', 'translate(100%)')
       .fromTo('opacity', 0.7, 1)
+      .play();
+  }
+
+  animarRebote() {
+    this.animationController
+      .create()
+      .addElement(this.page.nativeElement)
+      .iterations(2)
+      .duration(700)
+      .keyframes([
+        { offset: 0, transform: 'translateY(0)' },
+        { offset: 0.5, transform: 'translateY(-20px)' },
+        { offset: 1, transform: 'translateY(0)' },
+      ])
       .play();
   }
 }
