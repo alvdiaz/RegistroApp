@@ -87,8 +87,8 @@ export class InicioPage implements OnInit, AfterViewInit {
       .addElement(this.itemTitulo.nativeElement)
       .iterations(Infinity)
       .duration(6000)
-      .fromTo('transform', 'translate(0%)', 'translate(100%)')
-      .fromTo('opacity', 0.7, 1)
+      .fromTo('transform', 'translate(10%)', 'translate(100%)')
+      .fromTo('opacity',1, 1,)
       .play();
   }
 

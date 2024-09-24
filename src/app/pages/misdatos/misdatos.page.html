@@ -1,13 +1,22 @@
+<!-- Comienza el Header -->
 <ion-header>
   <ion-toolbar color="duoc-azul">
-    <ion-title #titulo class="">
-      Sistema de Asistencia Duoc
-    </ion-title>
+    <div class="header-content">
+      <div class="logo-text">
+        <span class="duoc-yellow">Duoc</span>
+        <span class="duoc-white">UC</span>
+        <img src="assets/images/logo-uc.png" alt="Logo UC" class="logo-uc">
+      </div>
+      <ion-title class="text-left" #titulo>
+        Sistema de Asistencia 
+      </ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
+<!-- Termina  el Header -->
 
 <ion-content [fullscreen]="true" #page class="ion-padding-horizontal">
-
+  <div class="background-image"></div>
   <!-- Bienvenida -->
   <ion-title class="ion-text-center">
     <h1>Mis Datos</h1>
@@ -84,6 +93,7 @@
   <!-- Botón para cerrar sesión -->
 
   <div class="ion-text-center">
+    
     <ion-button shape="round" color="primary"  size="small" (click)="actualizarUsuarioEnLista()">Actualizar</ion-button>
     <ion-button shape="round" size="small"(click)="mostrarDatosPersona()">Ver datos</ion-button>
     <ion-button shape="round" color="danger" size="small" (click)="cerrarSesion()">Cerrar sesión</ion-button>
@@ -96,6 +106,7 @@
 
 
 <!-- Comienza el Footer -->
+
   <ion-tab-bar slot="bottom">
     <ion-tab-button [routerLink]="['/misdatos']">
       <ion-icon name="person-outline"></ion-icon>
@@ -112,4 +123,5 @@
       <ion-label>Mi Clase</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
+
 <!-- Termina el Footer -->

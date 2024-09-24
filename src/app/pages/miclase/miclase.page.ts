@@ -81,8 +81,8 @@ public datosClase: any;
       .addElement(this.itemTitulo.nativeElement)
       .iterations(Infinity)
       .duration(6000)
-      .fromTo('transform', 'translate(0%)', 'translate(100%)')
-      .fromTo('opacity', 0.7, 1)
+      .fromTo('transform', 'translate(10%)', 'translate(100%)')
+      .fromTo('opacity',1, 1,)
       .play();
   }
 
@@ -95,8 +95,13 @@ public datosClase: any;
       .keyframes([
         { offset: 0, transform: 'translateY(0)' },
         { offset: 0.5, transform: 'translateY(-20px)' },
-        { offset: 1, transform: 'translateY(0)' },
+        { offset: 3, transform: 'translateY(0)' },
       ])
       .play();
+  }
+
+  public cerrarSesion(): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/login']);
   }
 }
