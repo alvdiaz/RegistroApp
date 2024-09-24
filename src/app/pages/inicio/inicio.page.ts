@@ -1,3 +1,5 @@
+import { MiclasePage } from './../miclase/miclase.page';
+import { MisdatosPage } from './../misdatos/misdatos.page';
 import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, AnimationController, IonicSafeString } from '@ionic/angular';
@@ -191,4 +193,15 @@ export class InicioPage implements OnInit, AfterViewInit {
     // Navegamos a la página de login
     this.router.navigate(['/login']);
   }
+
+  public MisdatosPage(): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/misdatos']);
+  }
+
+  public MiclasePage(): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/miclase']);
+  }
+
 }

@@ -168,3 +168,15 @@ ion-button {
   height: 100%;
   z-index: -1; /* Envía la imagen al fondo */
 }   
+
+ion-card {
+  background: rgba(0, 0, 0, 0.897); /* Fondo blanco con transparencia */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Sombra suave */
+}
+ion-card-header {
+  background: $duoc-azul; /* Fondo del header con transparencia */
+}
+.white-text {
+  color: white;
+}

@@ -13,115 +13,52 @@
     </div>
   </ion-toolbar>
 </ion-header>
+<ion-title class="ion-text-center">
+  <h1>Mis Datos</h1>
+</ion-title>
 <!-- Termina  el Header -->
 
 <ion-content [fullscreen]="true" #page class="ion-padding-horizontal">
-  <div class="background-image"></div>
-  <!-- Bienvenida -->
-  <ion-title class="ion-text-center">
-    <h1>Mis Datos</h1>
-  </ion-title>
   
+<!-- Bienvenida -->
+
+<div class="background-image"></div>
   
-  <!-- Cuenta (Desde Usuario) -->
+<!-- Cuenta (Desde Usuario) -->
+<ion-card>
 
-  <ion-item>
-    <ion-label position="floating">Cuenta</ion-label>
-    <ion-input type="text" [(ngModel)]="usuario.nombre"></ion-input>
-  </ion-item>
-  
-  <!-- Nombre (Desde Usuario) -->
-  <ion-item>
-    <ion-label position="floating">Nombres</ion-label>
-    <ion-input type="text" [(ngModel)]="usuario.nombre"></ion-input>
-  </ion-item>
-
- <!--  Apellido (Desde Usuario) -->
-<ion-item>
-  <ion-label position="floating">Apellidos</ion-label>
-  <ion-input type="text" [(ngModel)]="usuario.nombre"></ion-input>
-</ion-item>
-
-<!-- Correo (Desde Usuario) -->
-<ion-item>
-  <ion-label position="floating">Correo</ion-label>
-  <ion-input type="text" [(ngModel)]="usuario.correo"></ion-input>
-</ion-item>
+  <ion-card-header>
+    <ion-card-title>Mis datos</ion-card-title> 
+  </ion-card-header>
 
 
-
-<!-- Pregunta Secreta (Desde Usuario) -->
-<ion-item>
-  <ion-label position="floating">Pregunta Secreta</ion-label>
-  <ion-input type="text" [(ngModel)]="usuario.preguntaSecreta"></ion-input>
-</ion-item>
-
-<!-- Respuesta Secreta (Desde Usuario) -->
-<ion-item>
-  <ion-label position="floating">Respuesta Secreta</ion-label>
-  <ion-input type="text" [(ngModel)]="usuario.respuestaSecreta"></ion-input>
-</ion-item>
-
-<!-- Nivel Educacional (Desde Persona) -->
-<ion-item>
-  <ion-label>Educación</ion-label>
-  <ion-select placeholder="Seleccione nivel" [(ngModel)]="persona.nivelEducacional.id">
-    <ion-select-option *ngFor="let nivelEducacional of nivelesEducacionales" [value]="nivelEducacional.id">
-      {{nivelEducacional.nombre}}
-    </ion-select-option>
-  </ion-select>
-</ion-item>
-
-<!-- Fecha de Nacimiento (Desde Persona) -->
-<ion-item>
-  <ion-label position="floating">Fecha Nacimiento</ion-label>
-  <ion-input type="date" [(ngModel)]="persona.fechaNacimiento"></ion-input>
-</ion-item>
-
-<!-- Contraseña (Desde Usuario) -->
-<ion-item>
-  <ion-label position="floating">Contraseña</ion-label>
-  <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
-</ion-item>
-
-<!-- Repetir contraseña (Desde Usuario) -->
-<ion-item>
-  <ion-label position="floating">Repetir contraseña</ion-label>
-  <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
-</ion-item>
-
-  <!-- Botón para cerrar sesión -->
-
-  <div class="ion-text-center">
+  <ion-card-content>
     
-    <ion-button shape="round" color="primary"  size="small" (click)="actualizarUsuarioEnLista()">Actualizar</ion-button>
-    <ion-button shape="round" size="small"(click)="mostrarDatosPersona()">Ver datos</ion-button>
-    <ion-button shape="round" color="danger" size="small" (click)="cerrarSesion()">Cerrar sesión</ion-button>
-  </div>
-
-</ion-content>
-
+  
+    
+  </ion-card-content>
+</ion-card>
 
 <!-- Termina el Content -->
 
 
 <!-- Comienza el Footer -->
 
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button [routerLink]="['/misdatos']">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-label>Mis Datos</ion-label>
-    </ion-tab-button>
-  
-    <ion-tab-button [routerLink]="['/inicio']">
-      <ion-icon name="home-outline"></ion-icon>
-      <ion-label>Inicio</ion-label>
-    </ion-tab-button>
-  
-    <ion-tab-button [routerLink]="['/miclase']">
-      <ion-icon name="school-outline"></ion-icon>
-      <ion-label>Mi Clase</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
+<ion-tab-bar slot="bottom">
+  <ion-tab-button (click)="MisdatosPage()">
+    <ion-icon name="person-outline"></ion-icon>
+    <ion-label>Mis Datos</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button (click)="InicioPage()">
+    <ion-icon name="home-outline"></ion-icon>
+    <ion-label>Inicio</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button (click)="MiclasePage()">
+    <ion-icon name="school-outline"></ion-icon>
+    <ion-label>Mi Clase</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>
 
 <!-- Termina el Footer -->

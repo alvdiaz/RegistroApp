@@ -104,4 +104,22 @@ public datosClase: any;
     // Navegamos a la página de login
     this.router.navigate(['/login']);
   }
+
+  public MisdatosPage(): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/misdatos']);
+  }
+
+  public MiclasePage(): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/miclase']);
+  }
+
+  public InicioPage (): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/inicio']);
+  }
+
+
 }
+

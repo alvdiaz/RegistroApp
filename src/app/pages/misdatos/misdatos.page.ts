@@ -1,3 +1,4 @@
+import { InicioPage } from './../inicio/inicio.page';
 import { AfterViewInit, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { AlertController, IonicSafeString, AnimationController } from '@ionic/angular';
@@ -104,6 +105,22 @@ export class MisdatosPage implements OnInit, AfterViewInit {
     };
     
     this.router.navigate(['/login'], navigationExtras);
+  }
+
+
+  public MisdatosPage(): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/misdatos']);
+  }
+
+  public MiclasePage(): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/miclase']);
+  }
+
+  public InicioPage (): void {
+    // Navegamos a la página de login
+    this.router.navigate(['/inicio']);
   }
 
   public limpiarFormulario(): void {

@@ -83,11 +83,9 @@
 
       <br><br>
       
-    <div class="ion-text-center">
-      <ion-button style="font-weight: 600; " color="danger" size="medium" (click)="cerrarSesion()">
+      <ion-button style="font-weight: 600;" color="danger"  (click)="cerrarSesion()" expand="block" shape="round" class="centered-item custom-font">
         Cerrar sesión
-      </ion-button>
-    </div>
+    </ion-button>
     </ion-card-content>
 
    
@@ -100,17 +98,17 @@
 
 <!-- Comienza el Footer -->
 <ion-tab-bar slot="bottom">
-  <ion-tab-button [routerLink]="['/misdatos']">
+  <ion-tab-button (click)="MisdatosPage()">
     <ion-icon name="person-outline"></ion-icon>
     <ion-label>Mis Datos</ion-label>
   </ion-tab-button>
 
-  <ion-tab-button [routerLink]="['/inicio']">
+  <ion-tab-button (click)="InicioPage()">
     <ion-icon name="home-outline"></ion-icon>
     <ion-label>Inicio</ion-label>
   </ion-tab-button>
 
-  <ion-tab-button [routerLink]="['/miclase']">
+  <ion-tab-button (click)="MiclasePage()">
     <ion-icon name="school-outline"></ion-icon>
     <ion-label>Mi Clase</ion-label>
   </ion-tab-button>
