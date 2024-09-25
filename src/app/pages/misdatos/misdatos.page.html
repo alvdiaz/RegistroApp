@@ -13,52 +13,115 @@
     </div>
   </ion-toolbar>
 </ion-header>
-<ion-title class="ion-text-center">
-  <h1>Mis Datos</h1>
-</ion-title>
 <!-- Termina  el Header -->
 
-<ion-content [fullscreen]="true" #page class="ion-padding-horizontal">
+<!-- Comienza el Content -->
   
-<!-- Bienvenida -->
+<br>
 
-<div class="background-image"></div>
+<ion-content fullscreen="true">
+  <div class="background-image"></div>
   
-<!-- Cuenta (Desde Usuario) -->
-<ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>¡Bienvenido(a)!: <br> {{usuario.nombre}} </ion-card-title>
+    </ion-card-header>
 
-  <ion-card-header>
-    <ion-card-title>Mis datos</ion-card-title> 
-  </ion-card-header>
+    <ion-card-header>
+      <ion-card-title> Sistema de asistencia </ion-card-title>
+    </ion-card-header>
+  </ion-card>
 
 
-  <ion-card-content>
+
     
+  <ion-list>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Cuenta</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.nombre"></ion-input>
+    </ion-item>  
   
-    
-  </ion-card-content>
-</ion-card>
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.nombre"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" [(ngModel)]="persona.apellido"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.correo" class="ion-text-left"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Pregunta Secreta</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.preguntaSecreta"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Respuesta Secreta</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.respuestaSecreta"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Seleccione nivel</ion-label>
+      <ion-select placeholder="Seleccione nivel" [(ngModel)]="persona.nivelEducacional.id">
+        <ion-select-option *ngFor="let nivelEducacional of nivelesEducacionales" [value]="nivelEducacional.id">
+          {{nivelEducacional.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Fecha Nacimiento</ion-label>
+      <ion-input type="date" [(ngModel)]="persona.fechaNacimiento"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Repetir contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
+    </ion-item>
+    <br>
+  </ion-list>
+  
+ 
+
+  </ion-content>
+  
+
 
 <!-- Termina el Content -->
 
 
 <!-- Comienza el Footer -->
+ 
+<ion-footer>
+  <ion-tab-bar slot="bottom">
+      <ion-tab-button (click)="MisdatosPage()">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Mis Datos</ion-label>
+      </ion-tab-button>
+    
+      <ion-tab-button (click)="InicioPage()">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+    
+      <ion-tab-button (click)="MiclasePage()">
+        <ion-icon name="school-outline"></ion-icon>
+        <ion-label>Mi Clase</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+</ion-footer>  
 
-<ion-tab-bar slot="bottom">
-  <ion-tab-button (click)="MisdatosPage()">
-    <ion-icon name="person-outline"></ion-icon>
-    <ion-label>Mis Datos</ion-label>
-  </ion-tab-button>
-
-  <ion-tab-button (click)="InicioPage()">
-    <ion-icon name="home-outline"></ion-icon>
-    <ion-label>Inicio</ion-label>
-  </ion-tab-button>
-
-  <ion-tab-button (click)="MiclasePage()">
-    <ion-icon name="school-outline"></ion-icon>
-    <ion-label>Mi Clase</ion-label>
-  </ion-tab-button>
-</ion-tab-bar>
 
 <!-- Termina el Footer -->
