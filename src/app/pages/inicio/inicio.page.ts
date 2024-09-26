@@ -1,7 +1,7 @@
 import { MiclasePage } from './../miclase/miclase.page';
 import { MisdatosPage } from './../misdatos/misdatos.page';
 import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController, AnimationController, IonicSafeString } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
@@ -103,16 +103,7 @@ export class InicioPage implements OnInit, AfterViewInit {
       .fromTo('transform', 'scale(0.5)', 'scale(1)')
       .play();
   }
-
-  // Función para navegar a la página de Mis Datos
-  public irAMisDatos() {
-    this.router.navigate(['/misdatos'], {
-      state: {
-        usuario: this.usuario, // Pasar usuario a la siguiente página
-      },
-    });
-    
-  }
+  
 
   public async comenzarEscaneoQR() {
     const mediaProvider: MediaProvider = await navigator.mediaDevices.getUserMedia({
@@ -194,10 +185,15 @@ export class InicioPage implements OnInit, AfterViewInit {
     this.router.navigate(['/login']);
   }
 
-  public MisdatosPage(): void {
-    // Navegamos a la página de login
-    this.router.navigate(['/misdatos']);
-  }
+public MisdatosPage(): void {
+  const navigationExtras: NavigationExtras = {
+    state: {
+      usuario: this.usuario // Pasar el objeto usuario
+    }
+  };
+  this.router.navigate(['/misdatos'], navigationExtras);
+}
+
 
   public MiclasePage(): void {
     // Navegamos a la página de login

@@ -30,19 +30,20 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    // Verificar si recibimos los datos desde el login
+    // Verificar si recibimos los datos desde la página anterior
     if (this.router.getCurrentNavigation()?.extras.state) {
       const state = this.router.getCurrentNavigation()?.extras.state as { usuario: Usuario };
+      
+      this.usuario = state.usuario; // Recuperamos el usuario y lo asignamos
   
-      this.usuario = state.usuario; // Aquí recuperamos el usuario y lo asignamos
-  
-      // Si los datos de persona están disponibles en el estado, los asignamos directamente
+      // Si los datos de persona están disponibles, los asignamos a la entidad persona
       if (state.usuario) {
-        this.persona.nombre = this.usuario.nombre; // Usamos el nombre de usuario para inicializar persona.nombre
-        this.persona.apellido = ''; // Puedes inicializar otros valores de persona aquí si es necesario
+        this.persona.nombre = this.usuario.nombre;  // Por ejemplo, usar el nombre de usuario
+        // Asigna otros valores de persona si es necesario
       }
     }
   }
+  
   
   
   
@@ -109,9 +110,14 @@ export class MisdatosPage implements OnInit, AfterViewInit {
 
 
   public MisdatosPage(): void {
-    // Navegamos a la página de login
-    this.router.navigate(['/misdatos']);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario // Pasar el objeto usuario
+      }
+    };
+    this.router.navigate(['/misdatos'], navigationExtras);
   }
+  
 
   public MiclasePage(): void {
     // Navegamos a la página de login
