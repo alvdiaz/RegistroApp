@@ -83,19 +83,7 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   
 
   // Función 1: Actualizar datos del usuario en la lista de usuarios válidos
-  public actualizarUsuarioEnLista(): void {
-    const listaUsuariosValidos = this.usuario.listaUsuariosValidos();
-    const index = listaUsuariosValidos.findIndex(usu => usu.correo === this.usuario.correo);
-  
-    if (index !== -1) {
-      // Actualizamos los datos en la lista de usuarios válidos
-      listaUsuariosValidos[index] = this.usuario;
-      this.presentAlert('Actualización', 'Los datos del usuario han sido actualizados correctamente.');
-    } else {
-      this.presentAlert('Error', 'No se encontró el usuario en la lista de usuarios válidos.');
-    }
-  }
-  
+
 
   // Función 2: Guardar en State y pasar usuario a ingreso.html al cerrar sesión
   public cerrarSesion(): void {
@@ -156,30 +144,41 @@ export class MisdatosPage implements OnInit, AfterViewInit {
     // Mostrar un mensaje emergente con los datos de la persona
     let mensaje = `
 
-  Correo:   ${this.usuario.correo} 
+  
+  Cuenta:   ${this.usuario.cuenta}
   Nombre:   ${this.asignado(this.usuario.nombre)}
-  Contraseña:   ${this.usuario.password}
+  Apellido:   ${this.asignado(this.usuario.apellido)}
+  Correo:   ${this.asignado(this.usuario.correo)} 
+  Pregunta Secreta:   ${this.usuario.preguntaSecreta}
+  Respuesta Secreta:${this.usuario.respuestaSecreta}  
+  Educación:   ${this.asignado(this.persona.nivelEducacional.getTextoNivelEducacional())} 
+  Nacimiento:  ${this.persona.getTextoFechaNacimiento()}
+  Contraseña Nueva:   ${this.usuario.password}
+  Contraseña Nueva:   ${this.usuario.password}
 
  
     `;
     this.mostrarMensajeAlerta(mensaje);
   }
-  public async presentAlert(titulo: string, mensaje: string) {
-    const alert = await this.alertController.create({
-      header: titulo,
-      message: new IonicSafeString(mensaje),
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
 
-  async mostrarMensajeAlerta(mensaje: string) {
+
+
+  async mostrarMensajeAlerta(mensaje: string,) {
     const alert = await this.alertController.create({
       header: 'Datos personales',
       message: mensaje,
       buttons: ['OK']
     });
     await alert.present();
+  }
+  // Función para limpiar los datos
+  limpiar() {
+    this.usuario.cuenta='';
+
+  }
+
+  actualizarUsuario() {
+    this.usuario.actualizarUsuario();
   }
 
 

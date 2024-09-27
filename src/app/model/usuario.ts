@@ -10,6 +10,7 @@ export class Usuario {
   public apellido= '';
   public preguntaSecreta = '';
   public respuestaSecreta = '';
+  public listaUsuarios: Usuario[];
 
   constructor(
     cuenta: string, correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string, respuestaSecreta: string)
@@ -21,7 +22,12 @@ export class Usuario {
     this.apellido = apellido;
     this.preguntaSecreta = preguntaSecreta;
     this.respuestaSecreta = respuestaSecreta;
+    this.listaUsuarios = [];
   }
+
+  public buscarUsuarioPorCuenta(cuenta: string): Usuario | undefined {
+  return this.listaUsuarios.find(usu => usu.cuenta === cuenta);
+  }  
 
   public listaUsuariosValidos(): Usuario[] {
     const lista = [];
@@ -71,5 +77,19 @@ export class Usuario {
   public validarUsuario(): string {
     return this.validarcorreo()
       || this.validarPassword();
+
+      
+  }
+  actualizarUsuario() {
+    const usu = this.buscarUsuarioPorCuenta(this.cuenta);
+    if (usu) {
+      usu.cuenta = this.cuenta;
+      usu.nombre = this.nombre;
+      usu.apellido = this.apellido;
+      usu.correo = this.correo;
+      usu.password = this.password;
+      usu.preguntaSecreta = this.preguntaSecreta;
+      usu.respuestaSecreta = this.respuestaSecreta;
+    }
   }
 }
