@@ -37,10 +37,7 @@
     <ion-card-content>
       <p>Escanea el código QR para registrar tu asistencia a clases</p>
       <br> 
-      <ion-button style="font-weight: 600;" *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="block" shape="round" color="primary">
-        <ion-icon slot="start" name="videocam-outline"></ion-icon>
-        Comenzar Escaneo de QR
-      </ion-button>
+
     
       <!-- Botón de Detener Escaneo de QR -->
       <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="block" shape="round" color="danger">

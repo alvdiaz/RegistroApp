@@ -2,13 +2,12 @@ import { MiclasePage } from './../miclase/miclase.page';
 import { MisdatosPage } from './../misdatos/misdatos.page';
 import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { AlertController, AnimationController, IonicSafeString } from '@ionic/angular';
+import { AlertController, AnimationController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Persona } from 'src/app/model/persona';
 import { Asistencia } from 'src/app/model/asistencia';
 import jsQR, { QRCode } from 'jsqr';
-
 
 @Component({
   selector: 'app-inicio',
@@ -17,20 +16,6 @@ import jsQR, { QRCode } from 'jsqr';
 })
 export class InicioPage implements OnInit, AfterViewInit {
 
-
-
-
-
-  miclase() {
-    throw new Error('Method not implemented.');
-  }
-  misdatos() {
-    throw new Error('Method not implemented.');
-  }
-  inicio() {
-    throw new Error('Method not implemented.');
-  }
-
   @ViewChild('video')
   private video!: ElementRef;
 
@@ -38,10 +23,10 @@ export class InicioPage implements OnInit, AfterViewInit {
   private canvas!: ElementRef;
 
   @ViewChild('titulo', { read: ElementRef })
-   itemTitulo!: ElementRef;
+  itemTitulo!: ElementRef;
   
-   @ViewChild('page', { read: ElementRef })
-   page!: ElementRef;
+  @ViewChild('page', { read: ElementRef })
+  page!: ElementRef;
 
   public usuario: Usuario = new Usuario('', '', '', '', '', '','');
   public nivelesEducacionales: NivelEducacional[] = new NivelEducacional().getNivelesEducacionales();
@@ -49,7 +34,6 @@ export class InicioPage implements OnInit, AfterViewInit {
   public asistencia: Asistencia = new Asistencia();
   public escaneando = false;
   public datosQR: string = '';
-
 
   public bloqueInicio: number = 0;
   public bloqueTermino: number = 0;
@@ -81,6 +65,7 @@ export class InicioPage implements OnInit, AfterViewInit {
   public ngAfterViewInit() {
     this.animarTituloIzqDer();
     this.animarAparicionFondo();
+    this.comenzarEscaneoQR(); // Iniciar escaneo automáticamente al cargar la página
   }
 
   animarTituloIzqDer() {
@@ -103,7 +88,6 @@ export class InicioPage implements OnInit, AfterViewInit {
       .fromTo('transform', 'scale(0.5)', 'scale(1)')
       .play();
   }
-  
 
   public async comenzarEscaneoQR() {
     const mediaProvider: MediaProvider = await navigator.mediaDevices.getUserMedia({
@@ -185,19 +169,21 @@ export class InicioPage implements OnInit, AfterViewInit {
     this.router.navigate(['/login']);
   }
 
-public MisdatosPage(): void {
-  const navigationExtras: NavigationExtras = {
-    state: {
-      usuario: this.usuario // Pasar el objeto usuario
-    }
-  };
-  this.router.navigate(['/misdatos'], navigationExtras);
-}
-
-
-  public MiclasePage(): void {
-    // Navegamos a la página de login
-    this.router.navigate(['/miclase']);
+  public MisdatosPage(): void {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario // Pasar el objeto usuario
+      }
+    };
+    this.router.navigate(['/misdatos'], navigationExtras);
   }
 
+  public MiclasePage(): void {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario // Pasar el objeto usuario
+      }
+    };
+    this.router.navigate(['/miclase'], navigationExtras);
+  }
 }

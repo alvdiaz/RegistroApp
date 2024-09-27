@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { Persona } from 'src/app/model/persona';
 import { Usuario } from 'src/app/model/usuario';
@@ -53,21 +53,25 @@ public datosClase: any;
 
   ngOnInit() {
     // Verificamos si hay datos de QR en el estado de navegación
-    const navExtras = this.router.getCurrentNavigation()?.extras?.state;
+   // Obtener los datos del usuario desde la página de login
+   const navExtras = this.router.getCurrentNavigation()?.extras?.state;
     
+   if (navExtras && navExtras['usuario']) {
+     this.usuario = navExtras['usuario']; // Asignar usuario desde el estado de navegación
+   }     
     if (navExtras && navExtras['datosQR']) {
-      const datosQR = navExtras['datosQR'];
-      this.bloqueInicio = datosQR.bloqueInicio;
-      this.bloqueTermino = datosQR.bloqueTermino;
-      this.dia = datosQR.dia;
-      this.horaFin = datosQR.horaFin;
-      this.horaInicio = datosQR.horaInicio;
-      this.idAsignatura = datosQR.idAsignatura;
-      this.nombreAsignatura = datosQR.nombreAsignatura;
-      this.nombreProfesor = datosQR.nombreProfesor;
-      this.seccion = datosQR.seccion;
-      this.sede = datosQR.sede;
-    }
+        const datosQR = navExtras['datosQR'];
+        this.bloqueInicio = datosQR.bloqueInicio;
+        this.bloqueTermino = datosQR.bloqueTermino;
+        this.dia = datosQR.dia;
+        this.horaFin = datosQR.horaFin;
+        this.horaInicio = datosQR.horaInicio;
+        this.idAsignatura = datosQR.idAsignatura;
+        this.nombreAsignatura = datosQR.nombreAsignatura;
+        this.nombreProfesor = datosQR.nombreProfesor;
+        this.seccion = datosQR.seccion;
+        this.sede = datosQR.sede;
+      }
   }
 
   public ngAfterViewInit() {
@@ -106,8 +110,12 @@ public datosClase: any;
   }
 
   public MisdatosPage(): void {
-    // Navegamos a la página de login
-    this.router.navigate(['/misdatos']);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario // Pasar el objeto usuario
+      }
+    };
+    this.router.navigate(['/misdatos'], navigationExtras);
   }
 
   public MiclasePage(): void {
