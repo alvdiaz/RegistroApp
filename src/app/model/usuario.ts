@@ -1,27 +1,34 @@
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { NivelEducacional } from './nivel-educacional';
+import { Persona } from "./persona";
+
 export class Usuario {
+  public cuenta = '';
   public correo = '';
   public password = '';
   public nombre = '';
+  public apellido= '';
   public preguntaSecreta = '';
   public respuestaSecreta = '';
 
   constructor(
-    correo: string, password: string, nombre: string, preguntaSecreta: string, respuestaSecreta: string)
+    cuenta: string, correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string, respuestaSecreta: string)
   {
+    this.cuenta = cuenta
     this.correo = correo;
     this.password = password;
     this.nombre = nombre;
+    this.apellido = apellido;
     this.preguntaSecreta = preguntaSecreta;
     this.respuestaSecreta = respuestaSecreta;
   }
 
   public listaUsuariosValidos(): Usuario[] {
     const lista = [];
-    lista.push(new Usuario('atorres@duocuc.cl', '1234', 'Ana Torres Leiva'
-      , '¿Cuál es tu animal favorito?', 'gato'));
-    lista.push(new Usuario('jperez@duocuc.cl', '5678', 'Juan Pérez González'
+    lista.push(new Usuario('atorres','atorres@duocuc.cl', '1234', 'Ana', 'Torres Leiva', '¿Cuál es tu animal favorito?', 'gato'));
+    lista.push(new Usuario('jperez','jperez@duocuc.cl', '5678', 'Juan', 'Pérez González'
       , '¿Cuál es tu postre favorito?', 'panqueques'));
-    lista.push(new Usuario('cmujica@duocuc.cl', '0987', 'Carla Mujica Sáez'
+    lista.push(new Usuario('cmujica','cmujica@duocuc.cl', '0987', 'Carla',' Mujica Sáez'
       , '¿Cuál es tu vehículo favorito?', 'moto'));
     return lista;
   }

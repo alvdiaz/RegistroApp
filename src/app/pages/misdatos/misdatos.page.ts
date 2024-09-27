@@ -18,7 +18,7 @@ export class MisdatosPage implements OnInit, AfterViewInit {
 
 
 
-  public usuario: Usuario = new Usuario('','','','','');
+  public usuario: Usuario = new Usuario('','','','','','','');
   public nivelesEducacionales: NivelEducacional[] = new NivelEducacional().getNivelesEducacionales();
   public persona: Persona = new Persona();
 

@@ -24,7 +24,7 @@
   
   <ion-card>
     <ion-card-header>
-      <ion-card-title>¡Bienvenido(a)!: <br> {{usuario.nombre}} </ion-card-title>
+      <ion-card-title>¡Bienvenido(a)!: <br> {{usuario.nombre}} {{usuario.apellido}} </ion-card-title>
     </ion-card-header>
 
     <ion-card-header>
@@ -39,7 +39,7 @@
     <br>
     <ion-item>
       <ion-label position="floating">Cuenta</ion-label>
-      <ion-input type="text" [(ngModel)]="usuario.nombre"></ion-input>
+      <ion-input type="text" [(ngModel)]="usuario.cuenta"></ion-input>
     </ion-item>  
   
     <ion-item>
@@ -49,7 +49,7 @@
   
     <ion-item>
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" [(ngModel)]="persona.apellido"></ion-input>
+      <ion-input type="text" [(ngModel)]="usuario.apellido"></ion-input>
     </ion-item>
   
     <ion-item>

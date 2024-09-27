@@ -43,7 +43,7 @@ export class InicioPage implements OnInit, AfterViewInit {
    @ViewChild('page', { read: ElementRef })
    page!: ElementRef;
 
-  public usuario: Usuario = new Usuario('', '', '', '', '');
+  public usuario: Usuario = new Usuario('', '', '', '', '', '','');
   public nivelesEducacionales: NivelEducacional[] = new NivelEducacional().getNivelesEducacionales();
   public persona: Persona = new Persona();
   public asistencia: Asistencia = new Asistencia();

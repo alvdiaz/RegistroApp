@@ -17,7 +17,7 @@ export class MiclasePage implements OnInit, AfterViewInit {
   page!: ElementRef;
 
   public persona: Persona = new Persona();
-  public usuario: Usuario = new Usuario('', '', '', '', '');
+  public usuario: Usuario = new Usuario('', '', '', '', '','','');
 
 
 
