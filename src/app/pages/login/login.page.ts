@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
 
   constructor(private router: Router, private toastController: ToastController) {
     this.usuario = new Usuario('', '', '', '', '','','');
-    this.usuario.correo = '';
+    this.usuario.cuenta = '';
     this.usuario.password = '';
   }
 
@@ -29,8 +29,8 @@ export class LoginPage implements OnInit {
 
 
  
-    this.usuario.correo = 'atorres@duocuc.cl';
-    this.usuario.password = '1234';
+    this.usuario.cuenta = '';
+    this.usuario.password = '';
     
   }
 
@@ -65,7 +65,7 @@ export class LoginPage implements OnInit {
   public validarUsuario(usuario: Usuario): boolean {
 
     const usu = this.usuario.buscarUsuarioValido(
-      this.usuario.correo, this.usuario.password);
+      this.usuario.cuenta, this.usuario.password);
 
     if (usu) {
       this.usuario = usu;

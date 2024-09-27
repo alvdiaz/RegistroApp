@@ -41,7 +41,8 @@
         <ion-icon slot="start" name="videocam-outline"></ion-icon>
         Comenzar Escaneo de QR
       </ion-button>
-  
+    
+      <!-- Botón de Detener Escaneo de QR -->
       <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="block" shape="round" color="danger">
         <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
         Detener escaneo de QR

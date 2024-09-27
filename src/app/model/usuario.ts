@@ -33,9 +33,9 @@ export class Usuario {
     return lista;
   }
 
-  public buscarUsuarioValido(correo: string, password: string): Usuario | null {
+  public buscarUsuarioValido(cuenta: string, password: string): Usuario | null {
     const usuario = this.listaUsuariosValidos().find(
-      usu => usu.correo === correo && usu.password === password);
+      usu => usu.cuenta === cuenta && usu.password === password);
     if (usuario !== undefined) {
       return usuario;
     } else {
