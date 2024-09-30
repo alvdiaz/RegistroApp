@@ -30,6 +30,7 @@ export class Usuario {
   }  
 
   public listaUsuariosValidos(): Usuario[] {
+    debugger
     const listaGuardada = localStorage.getItem('usuarios');
     if (listaGuardada) {
       // Si existe una lista guardada en localStorage, retornarla
@@ -58,6 +59,7 @@ export class Usuario {
   }
 
   public validarCuenta(): string {
+    debugger
     if (this.cuenta.trim() === '') {
       return 'Para ingresar al sistema debe ingresar un nombre de usuario.';
     }

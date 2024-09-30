@@ -71,15 +71,15 @@ export class MisdatosPage implements OnInit, AfterViewInit {
 
 
   animarVueltaDePagina() {
-    this.animationController
-      .create()
-      .addElement(this.page.nativeElement)
-      .iterations(1)
-      .duration(1000)
-      .fromTo('transform', 'rotateY(deg)', 'rotateY(-180)')
-      .duration(1000)
-      .fromTo('transform', 'rotateY(-180deg)', 'rotateY(0deg)')
-      .play();
+    // this.animationController
+    //   .create()
+    //   .addElement(this.page.nativeElement)
+    //   .iterations(1)
+    //   .duration(1000)
+    //   .fromTo('transform', 'rotateY(deg)', 'rotateY(-180)')
+    //   .duration(1000)
+    //   .fromTo('transform', 'rotateY(-180deg)', 'rotateY(0deg)')
+    //   .play();
   }
 
 
@@ -113,13 +113,21 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   
 
   public MiclasePage(): void {
-    // Navegamos a la página de login
-    this.router.navigate(['/miclase']);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario // Pasar el objeto usuario
+      }
+    };
+    this.router.navigate(['/miclase'], navigationExtras);
   }
 
   public InicioPage (): void {
-    // Navegamos a la página de login
-    this.router.navigate(['/inicio']);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario // Pasar el objeto usuario
+      }
+    };
+    this.router.navigate(['/inicio'], navigationExtras);
   }
 
   public limpiarFormulario(): void {

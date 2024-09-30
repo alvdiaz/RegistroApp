@@ -17,6 +17,8 @@ export class LoginPage implements OnInit {
 
   constructor(private router: Router, private toastController: ToastController) {
     this.usuario = new Usuario('', '', '', '', '','','');
+    this.usuario.cuenta='atorres';
+    this.usuario.password='1111';
   }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class LoginPage implements OnInit {
   }
 
   public ingresar(): void {
+    debugger
     // Primero, validar el usuario
     if (!this.validarUsuario(this.usuario)) {
       return; // Si no es válido, salir de la función

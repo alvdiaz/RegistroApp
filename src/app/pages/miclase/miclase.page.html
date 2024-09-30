@@ -20,6 +20,10 @@
   <div class="background-image"></div>
 
   <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>¡Bienvenido(a)!: {{usuario.nombre}} {{usuario.apellido}} </ion-card-title>
+    </ion-card-header>
     <ion-card-header color="duoc-azul">
       <ion-card-title class="ion-text-center" style="color: white;">
         Información de la Clase
@@ -97,22 +101,22 @@
 <!-- Termina el Content -->
 
 <!-- Comienza el Footer -->
- <ion-footer>
-<ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="MisdatosPage()">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-label>Mis Datos</ion-label>
-    </ion-tab-button>
-  
-    <ion-tab-button (click)="InicioPage()">
-      <ion-icon name="home-outline"></ion-icon>
-      <ion-label>Inicio</ion-label>
-    </ion-tab-button>
-  
-    <ion-tab-button (click)="MiclasePage()">
-      <ion-icon name="school-outline"></ion-icon>
-      <ion-label>Mi Clase</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-footer>
+<ion-footer>
+  <ion-toolbar >
+      <ion-button (click)="MisdatosPage()">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Mis Datos</ion-label>
+      </ion-button>
+    
+      <ion-button (click)="InicioPage()">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-button>
+    
+      <ion-button (click)="MiclasePage()">
+        <ion-icon name="school-outline"></ion-icon>
+        <ion-label>Mi Clase</ion-label>
+      </ion-button>
+  </ion-toolbar>
+</ion-footer>  
 <!-- Termina el Footer -->

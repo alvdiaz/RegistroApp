@@ -133,7 +133,7 @@ export class InicioPage implements OnInit, AfterViewInit {
     this.bloqueInicio = objetoDatosQR.bloqueInicio;
     this.bloqueTermino = objetoDatosQR.bloqueTermino;
     this.dia = objetoDatosQR.dia;
-      
+    
     this.horaFin = objetoDatosQR.horaFin;
     this.horaInicio = objetoDatosQR.horaInicio;
     this.idAsignatura = objetoDatosQR.idAsignatura;
@@ -141,8 +141,9 @@ export class InicioPage implements OnInit, AfterViewInit {
     this.nombreProfesor = objetoDatosQR.nombreProfesor;
     this.seccion = objetoDatosQR.seccion;
     this.sede = objetoDatosQR.sede;
-
-    this.router.navigate(['/miclase'], {
+  
+    // Navegar a MiclasePage pasando tanto el usuario como los datos del QR
+    const navigationExtras: NavigationExtras = {
       state: {
         datosQR: {
           bloqueInicio: this.bloqueInicio,
@@ -156,9 +157,13 @@ export class InicioPage implements OnInit, AfterViewInit {
           seccion: this.seccion,
           sede: this.sede,
         },
-      },
-    });
+        usuario: this.usuario // Aquí se pasa el usuario también
+      }
+    };
+  
+    this.router.navigate(['/miclase'], navigationExtras);
   }
+  
 
   public detenerEscaneoQR(): void {
     this.escaneando = false;
@@ -185,5 +190,13 @@ export class InicioPage implements OnInit, AfterViewInit {
       }
     };
     this.router.navigate(['/miclase'], navigationExtras);
+  }
+  public InicioPage(): void {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario // Pasar el objeto usuario
+      }
+    };
+    this.router.navigate(['/inicio'], navigationExtras);
   }
 }
