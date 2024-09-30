@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { Router } from '@angular/router';
 import { AlertController, AnimationController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';  
+import { NivelEducacional } from 'src/app/model/nivel-educacional';
 
 
 
@@ -32,7 +33,7 @@ export class CorreoPage implements OnInit, AfterViewInit {
 
   // Función para validar si el correo ingresado pertenece a un usuario
   validarCorreo() {
-    const usuarioService = new Usuario('', '', '', '', '','','');
+    const usuarioService = new Usuario('', '', '', '', '','','',);
     const listaUsuarios = usuarioService.listaUsuariosValidos();
   
     // Buscar si existe el usuario con el correo ingresado

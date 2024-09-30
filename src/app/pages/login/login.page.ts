@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
+import { NivelEducacional } from 'src/app/model/nivel-educacional';
 
 @Component({
   selector: 'app-login',
@@ -20,17 +21,22 @@ export class LoginPage implements OnInit {
 
 
   constructor(private router: Router, private toastController: ToastController) {
-    this.usuario = new Usuario('', '', '', '', '','','');
+    this.usuario = new Usuario('', '', '', '', '','','',);
     this.usuario.cuenta = '';
     this.usuario.password = '';
   }
 
   public ngOnInit(): void {
 
-
- 
-    this.usuario.cuenta = '';
-    this.usuario.password = '';
+    this.usuario.actualizarDatosEnLocalStorage();
+  
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario // Pasar el objeto usuario actualizado
+      }
+    };
+    
+    this.router.navigate(['/login'], navigationExtras);
     
   }
 
@@ -50,32 +56,24 @@ export class LoginPage implements OnInit {
         usuario: this.usuario // Enviar el objeto de usuario completo
       }
     };
-
-    
   
     // Navegar a la página de inicio y pasar los datos del usuario
     this.router.navigate(['/inicio'], navigationExtras);
   }
-
   
-  /*
-    Usaremos validateModel para verificar que se cumplan las
-    validaciones de los campos del formulario
-  */
   public validarUsuario(usuario: Usuario): boolean {
-
-    const usu = this.usuario.buscarUsuarioValido(
-      this.usuario.cuenta, this.usuario.password);
-
+    const usu = this.usuario.buscarUsuarioValido(this.usuario.cuenta, this.usuario.password);
+  
     if (usu) {
-      this.usuario = usu;
+      this.usuario = usu;  // Actualiza los datos del usuario en sesión
       return true;
-    }
-    else {
+    } else {
       this.mostrarMensaje('¡Las credenciales no son correctas!');
       return false;
     }
   }
+  
+  
 
   /**
    * Muestra un toast al usuario

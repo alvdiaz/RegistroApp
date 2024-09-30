@@ -30,14 +30,22 @@ export class Usuario {
   }  
 
   public listaUsuariosValidos(): Usuario[] {
-    const lista = [];
-    lista.push(new Usuario('atorres','atorres@duocuc.cl', '1234', 'Ana', 'Torres Leiva', '¿Cuál es tu animal favorito?', 'gato'));
-    lista.push(new Usuario('jperez','jperez@duocuc.cl', '5678', 'Juan', 'Pérez González'
-      , '¿Cuál es tu postre favorito?', 'panqueques'));
-    lista.push(new Usuario('cmujica','cmujica@duocuc.cl', '0987', 'Carla',' Mujica Sáez'
-      , '¿Cuál es tu vehículo favorito?', 'moto'));
-    return lista;
+    const listaGuardada = localStorage.getItem('usuarios');
+    if (listaGuardada) {
+      // Si existe una lista guardada en localStorage, retornarla
+      return JSON.parse(listaGuardada).map((usuario: any) => 
+        new Usuario(usuario.cuenta, usuario.correo, usuario.password, usuario.nombre, usuario.apellido, usuario.preguntaSecreta, usuario.respuestaSecreta)
+      );
+    } else {
+      // Si no existe, retornar la lista estática predefinida
+      const lista = [];
+      lista.push(new Usuario('atorres', 'atorres@duocuc.cl', '1234', 'Ana', 'Torres Leiva', '¿Cuál es tu animal favorito?', 'gato'));
+      lista.push(new Usuario('jperez', 'jperez@duocuc.cl', '5678', 'Juan', 'Pérez González', '¿Cuál es tu postre favorito?', 'panqueques'));
+      lista.push(new Usuario('cmujica', 'cmujica@duocuc.cl', '0987', 'Carla', 'Mujica Sáez', '¿Cuál es tu vehículo favorito?', 'moto'));
+      return lista;
+    }
   }
+  
 
   public buscarUsuarioValido(cuenta: string, password: string): Usuario | null {
     const usuario = this.listaUsuariosValidos().find(
@@ -49,7 +57,7 @@ export class Usuario {
     }
   }
 
-  public validarcorreo(): string {
+  public validarCuenta(): string {
     if (this.correo.trim() === '') {
       return 'Para ingresar al sistema debe ingresar un nombre de usuario.';
     }
@@ -75,21 +83,45 @@ export class Usuario {
   }
 
   public validarUsuario(): string {
-    return this.validarcorreo()
+    return this.validarCuenta()
       || this.validarPassword();
 
       
   }
-  actualizarUsuario() {
-    const usu = this.buscarUsuarioPorCuenta(this.cuenta);
-    if (usu) {
-      usu.cuenta = this.cuenta;
-      usu.nombre = this.nombre;
-      usu.apellido = this.apellido;
-      usu.correo = this.correo;
-      usu.password = this.password;
-      usu.preguntaSecreta = this.preguntaSecreta;
-      usu.respuestaSecreta = this.respuestaSecreta;
+
+
+  public static guardarUsuario(usuario: Usuario): void {
+    const lista = Usuario.cargarUsuariosDesdeLocalStorage();
+    const index = lista.findIndex(u => u.cuenta === usuario.cuenta);
+  
+    if (index !== -1) {
+      // Si el usuario ya existe, actualizarlo
+      lista[index] = usuario;
+    } else {
+      // Si no existe, agregarlo
+      lista.push(usuario);
+    }
+    
+    // Guardar la lista actualizada en localStorage
+    localStorage.setItem('usuarios', JSON.stringify(lista));
+  }
+  
+  public static cargarUsuariosDesdeLocalStorage(): Usuario[] {
+    const listaGuardada = localStorage.getItem('usuarios');
+    if (listaGuardada) {
+      return JSON.parse(listaGuardada).map((usuario: any) => 
+        new Usuario(usuario.cuenta, usuario.correo, usuario.password, usuario.nombre, usuario.apellido, usuario.preguntaSecreta, usuario.respuestaSecreta)
+      );
+    }
+    return [];
+  }
+  
+
+  // Método para actualizar los datos de un usuario
+  public actualizarDatosEnLocalStorage(): void {
+    const usuarioGuardado = Usuario.cargarUsuariosDesdeLocalStorage();
+    if (usuarioGuardado) {
+      Usuario.guardarUsuario(this);  // Sobrescribir los datos actualizados
     }
   }
 }

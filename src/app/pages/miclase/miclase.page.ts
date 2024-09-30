@@ -3,6 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { Persona } from 'src/app/model/persona';
 import { Usuario } from 'src/app/model/usuario';
+import { NivelEducacional } from 'src/app/model/nivel-educacional';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class MiclasePage implements OnInit, AfterViewInit {
   page!: ElementRef;
 
   public persona: Persona = new Persona();
-  public usuario: Usuario = new Usuario('', '', '', '', '','','');
+  public usuario: Usuario = new Usuario('', '', '', '', '','','',);
 
 
 

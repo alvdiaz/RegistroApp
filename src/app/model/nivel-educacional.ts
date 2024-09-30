@@ -2,11 +2,13 @@ export class NivelEducacional {
   public id: number;
   public nombre: string;
 
-  public constructor() {
-    this.id = 0;
-    this.nombre = '';
+  // Constructor actualizado para aceptar dos parámetros
+  public constructor(id: number = 0, nombre: string = '') {
+    this.id = id;
+    this.nombre = nombre;
   }
 
+  // Otros métodos de la clase permanecen igual
   public getNivelEducacional(id: number, nombre: string): NivelEducacional {
     const nived = new NivelEducacional();
     nived.id = id;
@@ -29,36 +31,26 @@ export class NivelEducacional {
     this.id = id;
     this.nombre = nombre;
   }
-
- 
-  public findNombreBy(id: number) {
+  
+  public findNombreBy(id: number): string {
     if (id < 1 || id > 6) {
       return 'Sin nivel educacional';
     }
     const nived = this.getNivelesEducacionales().find(n => n.id === id);
-    if (nived !== undefined) {
-     return nived.nombre;
-    } else {
-      return `Nivel educacional con id=${id} no fue encontrado`;
-    }
+    return nived ? nived.nombre : `Nivel educacional con id=${id} no fue encontrado`;
   }
 
   public getTextoId(): string {
-    if (this.id < 1 || this.id > 6) {
-      return 'Sin nivel educacional';
-    }
-    return this.id.toString();
+    return this.id < 1 || this.id > 6 ? 'Sin nivel educacional' : this.id.toString();
   }
 
   public getTextoNombre(): string {
-    return this.nombre? this.nombre : 'No asignado';
+    return this.nombre.trim() ? this.nombre : 'No asignado';
   }
 
   public getTextoNivelEducacional(): string {
-    if (this.id < 1 || this.id > 6) {
-      return 'No asignado';
-    } else {
-      return this.id.toString() + ' - ' + this.findNombreBy(this.id);
-    }
+    return this.id < 1 || this.id > 6
+      ? 'No asignado'
+      : this.id.toString() + ' - ' + this.findNombreBy(this.id);
   }
 }

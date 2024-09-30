@@ -1,7 +1,7 @@
 import { InicioPage } from './../inicio/inicio.page';
 import { AfterViewInit, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
-import { AlertController, IonicSafeString, AnimationController } from '@ionic/angular';
+import { AlertController, IonicSafeString, AnimationController, ToastController} from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Persona } from 'src/app/model/persona';
@@ -26,7 +26,10 @@ export class MisdatosPage implements OnInit, AfterViewInit {
     private activeroute: ActivatedRoute,
     private router: Router,
     private alertController: AlertController,
-    private animationController: AnimationController
+    private animationController: AnimationController,
+    private toastController: ToastController,
+    
+
   ) {}
 
   ngOnInit() {
@@ -87,9 +90,11 @@ export class MisdatosPage implements OnInit, AfterViewInit {
 
   // Función 2: Guardar en State y pasar usuario a ingreso.html al cerrar sesión
   public cerrarSesion(): void {
+    this.usuario.actualizarDatosEnLocalStorage();
+  
     const navigationExtras: NavigationExtras = {
       state: {
-        usuario: this.usuario
+        usuario: this.usuario // Pasar el objeto usuario actualizado
       }
     };
     
@@ -174,12 +179,55 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   // Función para limpiar los datos
   limpiar() {
     this.usuario.cuenta='';
+    this.usuario.nombre='';
+    this.usuario.apellido='';
+    this.usuario.correo='';
+    this.usuario.preguntaSecreta='';
+    this.usuario.respuestaSecreta='';
+    this.usuario.password='';
+
 
   }
 
-  actualizarUsuario() {
-    this.usuario.actualizarUsuario();
+  guardarCambiosEnModelo() {
+    // Guardar los cambios en localStorage
+    this.usuario.actualizarDatosEnLocalStorage();
   }
+
+  async actualizarDatos() {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Estás seguro de que deseas actualizar tus datos?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Actualizar',
+          handler: () => {
+            this.guardarCambiosEnModelo();
+            console.log('Datos actualizados', this.usuario);
+            this.mostrarMensajeExito();
+
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async mostrarMensajeExito() {
+    const alert = await this.alertController.create({
+      header: 'Éxito',
+      message: 'Tus datos han sido actualizados correctamente.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  
 
 
 }
