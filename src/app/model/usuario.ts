@@ -58,10 +58,10 @@ export class Usuario {
   }
 
   public validarCuenta(): string {
-    if (this.correo.trim() === '') {
+    if (this.cuenta.trim() === '') {
       return 'Para ingresar al sistema debe ingresar un nombre de usuario.';
     }
-    if (this.correo.length < 3 || this.correo.length > 8) {
+    if (this.cuenta.length < 3 || this.cuenta.length > 8) {
       return 'El nombre de usuario debe tener entre 3 y 8 caracteres.';
     }
     return '';
