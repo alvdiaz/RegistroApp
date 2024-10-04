@@ -30,34 +30,42 @@ export class Usuario {
   }  
 
   public listaUsuariosValidos(): Usuario[] {
-    debugger
-    const listaGuardada = localStorage.getItem('usuarios');
-    if (listaGuardada) {
-      // Si existe una lista guardada en localStorage, retornarla
-      return JSON.parse(listaGuardada).map((usuario: any) => 
-        new Usuario(usuario.cuenta, usuario.correo, usuario.password, usuario.nombre, usuario.apellido, usuario.preguntaSecreta, usuario.respuestaSecreta)
-      );
-    } else {
-      // Si no existe, retornar la lista estática predefinida
-      const lista = [];
-      lista.push(new Usuario('atorres', 'atorres@duocuc.cl', '1234', 'Ana', 'Torres Leiva', '¿Cuál es tu animal favorito?', 'gato'));
-      lista.push(new Usuario('jperez', 'jperez@duocuc.cl', '5678', 'Juan', 'Pérez González', '¿Cuál es tu postre favorito?', 'panqueques'));
-      lista.push(new Usuario('cmujica', 'cmujica@duocuc.cl', '0987', 'Carla', 'Mujica Sáez', '¿Cuál es tu vehículo favorito?', 'moto'));
-      return lista;
-    }
+    // Obtener la lista predefinida
+    const listaPredefinida: Usuario[] = [
+      new Usuario('atorres', 'atorres@duocuc.cl', '1234', 'Ana', 'Torres Leiva', '¿Cuál es tu animal favorito?', 'gato'),
+      new Usuario('jperez', 'jperez@duocuc.cl', '5678', 'Juan', 'Pérez González', '¿Cuál es tu postre favorito?', 'panqueques'),
+      new Usuario('cmujica', 'cmujica@duocuc.cl', '0987', 'Carla', 'Mujica Sáez', '¿Cuál es tu vehículo favorito?', 'moto')
+    ];
+
+    // Cargar la lista de usuarios del localStorage
+    const listaGuardada = Usuario.cargarUsuariosDesdeLocalStorage();
+
+    // Combinar ambas listas sin duplicar usuarios (si el usuario ya está en localStorage, usar el de localStorage)
+    const listaCombinada = listaPredefinida.map(usuarioPredefinido => {
+      const usuarioEncontrado = listaGuardada.find(usu => usu.cuenta === usuarioPredefinido.cuenta);
+      return usuarioEncontrado ? usuarioEncontrado : usuarioPredefinido;
+    });
+
+    return listaCombinada;
   }
+  
   
 
   public buscarUsuarioValido(cuenta: string, password: string): Usuario | null {
+    // Buscar en la lista de usuarios válidos (localStorage o lista estática)
     const usuario = this.listaUsuariosValidos().find(
-      usu => usu.cuenta === cuenta && usu.password === password);
-    if (usuario !== undefined) {
+      usu => usu.cuenta === cuenta && usu.password === password
+    );
+  
+    // Si el usuario se encuentra, retornarlo
+    if (usuario) {
       return usuario;
-    } else {
-      return null;
     }
+  
+    // Si el usuario no se encuentra, retornar null
+    return null;
   }
-
+  
   public validarCuenta(): string {
     debugger
     if (this.cuenta.trim() === '') {
@@ -93,25 +101,29 @@ export class Usuario {
 
 
   public static guardarUsuario(usuario: Usuario): void {
+    // Cargar los usuarios actuales del localStorage
     const lista = Usuario.cargarUsuariosDesdeLocalStorage();
+    
+    // Buscar si el usuario ya existe en la lista
     const index = lista.findIndex(u => u.cuenta === usuario.cuenta);
-  
+
     if (index !== -1) {
-      // Si el usuario ya existe, actualizarlo
+      // Si el usuario existe, actualizarlo
       lista[index] = usuario;
     } else {
       // Si no existe, agregarlo
       lista.push(usuario);
     }
-    
+
     // Guardar la lista actualizada en localStorage
     localStorage.setItem('usuarios', JSON.stringify(lista));
   }
+
   
   public static cargarUsuariosDesdeLocalStorage(): Usuario[] {
     const listaGuardada = localStorage.getItem('usuarios');
     if (listaGuardada) {
-      return JSON.parse(listaGuardada).map((usuario: any) => 
+      return JSON.parse(listaGuardada).map((usuario: any) =>
         new Usuario(usuario.cuenta, usuario.correo, usuario.password, usuario.nombre, usuario.apellido, usuario.preguntaSecreta, usuario.respuestaSecreta)
       );
     }
@@ -121,9 +133,6 @@ export class Usuario {
 
   // Método para actualizar los datos de un usuario
   public actualizarDatosEnLocalStorage(): void {
-    const usuarioGuardado = Usuario.cargarUsuariosDesdeLocalStorage();
-    if (usuarioGuardado) {
-      Usuario.guardarUsuario(this);  // Sobrescribir los datos actualizados
-    }
+    Usuario.guardarUsuario(this);  // Guardar o actualizar sólo este usuario
   }
 }

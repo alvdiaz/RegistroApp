@@ -26,30 +26,32 @@ export class LoginPage implements OnInit {
   }
 
   public ingresar(): void {
-    debugger
     // Primero, validar el usuario
     if (!this.validarUsuario(this.usuario)) {
       return; // Si no es válido, salir de la función
     }
-
+  
+    // Si el usuario es válido, guardarlo automáticamente en localStorage
+    Usuario.guardarUsuario(this.usuario);
+  
     // Mostrar mensaje de bienvenida con el nombre del usuario
-    this.mostrarMensaje(`¡Bienvenido, ${this.usuario.nombre}!`);
-
+    this.mostrarMensaje(`¡Bienvenido(a), ${this.usuario.nombre}!`);
+  
     // Crear NavigationExtras para pasar el usuario a la página de inicio
     const navigationExtras: NavigationExtras = {
       state: {
         usuario: this.usuario // Enviar el objeto de usuario completo
       }
     };
-
+  
     // Navegar a la página de inicio y pasar los datos del usuario
     this.router.navigate(['/inicio'], navigationExtras);
   }
-
+  
   public validarUsuario(usuario: Usuario): boolean {
-    const usuarios = this.usuario.listaUsuariosValidos(); // Asegúrate de cargar la lista de usuarios
+    // Usar el método para obtener la lista de usuarios y buscar uno válido
     const usu = this.usuario.buscarUsuarioValido(usuario.cuenta, usuario.password);
-
+  
     if (usu) {
       this.usuario = usu;  // Actualiza los datos del usuario en sesión
       return true;
@@ -58,6 +60,8 @@ export class LoginPage implements OnInit {
       return false;
     }
   }
+  
+  
 
   /**
    * Muestra un toast al usuario

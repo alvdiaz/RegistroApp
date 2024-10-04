@@ -55,3 +55,37 @@ ion-content {
         }
     }
 }
+
+/* Centrar el div contenedor principal */
+.centered-container {
+    display: flex;
+    justify-content: center;   /* Centrar horizontalmente */
+    align-items: center;       /* Centrar verticalmente */
+    height: 100vh;             /* Ocupa toda la altura de la pantalla */
+    padding: 20px;             /* Añadir un pequeño padding para que no quede muy ajustado a los bordes */
+    box-sizing: border-box;     /* Asegurar que el padding no modifique el tamaño del contenedor */
+  }
+  
+  /* Estilos específicos para la tarjeta de recuperación */
+  .forgot-password-card {
+    text-align: center;        /* Centrar el texto */
+    max-width: 350px;          /* Limitar el ancho de la tarjeta */
+    width: 100%;               /* Que ocupe el 100% de su contenedor */
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Añadir una pequeña sombra para resaltar el contenido */
+    border-radius: 10px;       /* Bordes redondeados */
+    background-color: #fff;    /* Fondo blanco para el contenido */
+  }
+  
+  .logo-uc {
+    width: 150px;              /* Ajustar el tamaño del logo */
+    margin-bottom: 20px;       /* Espacio inferior entre el logo y el contenido */
+  }
+  
+  .image-container {
+    margin-bottom: 20px;       /* Espacio entre la imagen y el texto */
+  }
+  
+  .error-image {
+    width: 150px;              /* Ajustar el tamaño de la imagen */
+  }

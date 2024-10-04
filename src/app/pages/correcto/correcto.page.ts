@@ -31,17 +31,17 @@ export class CorrectoPage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.animarExpansion();
+    // this.animarExpansion();
     
   }
 
-  animarExpansion() {
-    this.animationController
-      .create()
-      .addElement(this.page.nativeElement)
-      .duration(1200)
-      .fromTo('transform', 'scaleX(0)', 'scaleX(1)')
-      .play();
-  }
+  // animarExpansion() {
+  //   this.animationController
+  //     .create()
+  //     .addElement(this.page.nativeElement)
+  //     .duration(1200)
+  //     .fromTo('transform', 'scaleX(0)', 'scaleX(1)')
+  //     .play();
+  // }
 
 }

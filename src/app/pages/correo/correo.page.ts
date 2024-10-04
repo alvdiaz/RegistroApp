@@ -51,15 +51,15 @@ export class CorreoPage implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    this.animarDeslizarVertical()
+    // this.animarDeslizarVertical()
   }
 
-  animarDeslizarVertical() {
-    this.animationController
-      .create()
-      .addElement(this.page.nativeElement)
-      .duration(800)
-      .fromTo('transform', 'translateY(-100%)', 'translateY(0%)')
-      .play();
-  }
+  // animarDeslizarVertical() {
+  //   this.animationController
+  //     .create()
+  //     .addElement(this.page.nativeElement)
+  //     .duration(800)
+  //     .fromTo('transform', 'translateY(-100%)', 'translateY(0%)')
+  //     .play();
+  // }
 }
